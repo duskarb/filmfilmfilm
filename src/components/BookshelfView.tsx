@@ -73,7 +73,7 @@ export function BookshelfView({ onMovieSelect, searchQuery, onViewChange, starre
 
       {/* Interactive Bookshelf / Horizontal Scroll */}
       <div className="flex-grow w-full overflow-hidden relative">
-        <div ref={scrollRef} className="flex gap-6 md:gap-10 overflow-x-auto pb-16 pt-8 px-margin-page hide-scrollbar h-full items-center" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <div ref={scrollRef} className="flex gap-6 md:gap-10 overflow-x-auto py-4 px-margin-page hide-scrollbar h-full items-center" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {currentMovies.map((movie) => (
             <motion.div 
               key={movie.id}
@@ -82,7 +82,7 @@ export function BookshelfView({ onMovieSelect, searchQuery, onViewChange, starre
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.4 }}
               onClick={() => onMovieSelect(movie.id)}
-              className="shrink-0 flex items-center group cursor-pointer h-[75%] min-h-[400px] relative hover:z-50"
+              className="shrink-0 flex items-center group cursor-pointer h-[85%] max-h-[750px] relative hover:z-50"
             >
               {/* The Frame / Book Cover */}
               <div className="relative h-full aspect-[2/3] bg-zinc-900 border-[8px] md:border-[12px] border-zinc-800 shadow-2xl rounded-sm overflow-hidden z-20 transition-all duration-500 group-hover:-translate-y-4 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
@@ -111,7 +111,7 @@ export function BookshelfView({ onMovieSelect, searchQuery, onViewChange, starre
             animate={{ opacity: 1, scale: 1 }}
             whileHover={{ scale: 1.02 }}
             onClick={onViewChange}
-            className="shrink-0 flex items-center justify-center group cursor-pointer h-[75%] min-h-[400px] aspect-[2/3]"
+            className="shrink-0 flex items-center justify-center group cursor-pointer h-[85%] max-h-[750px] aspect-[2/3]"
           >
             <div className="relative h-full w-full border-[2px] border-dashed border-zinc-800 hover:border-zinc-500 rounded-sm flex flex-col items-center justify-center text-zinc-500 hover:text-white transition-all duration-300">
               <span className="text-2xl mb-2">⊞</span>

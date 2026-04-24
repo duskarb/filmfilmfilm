@@ -76,7 +76,7 @@ export default function App() {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col pt-32 transition-colors duration-500 dark:bg-[#0a0a0a] dark:text-zinc-300`}>
+    <div className={`min-h-screen flex flex-col pt-32 transition-colors duration-500 ${theme === 'dark' ? 'bg-[#0a0a0a] text-zinc-300' : 'bg-white text-black'}`}>
       <Navbar currentPage={currentPage} onPageChange={setCurrentPage} onSearch={setSearchQuery} theme={theme} toggleTheme={toggleTheme} />
       
       <main className="flex-grow w-full">
