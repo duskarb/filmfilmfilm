@@ -25,7 +25,7 @@ export function BookshelfView({ onMovieSelect, searchQuery, onViewChange }: Book
       // Only trigger if we're scrolling vertically (deltaY)
       if (e.deltaY !== 0) {
         e.preventDefault();
-        el.scrollBy({ left: e.deltaY, behavior: 'auto' });
+        el.scrollBy({ left: e.deltaY * 0.6, behavior: 'auto' });
       }
     };
 
@@ -54,8 +54,7 @@ export function BookshelfView({ onMovieSelect, searchQuery, onViewChange }: Book
   const currentMovies = filteredMovies.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#0a0a0a] text-zinc-300 w-full absolute inset-0 z-40 pt-32" style={{ backgroundImage: 'radial-gradient(circle at 50% 0%, #1f1f1f 0%, #0a0a0a 70%)', backgroundAttachment: 'fixed' }}>
-      {/* We add an absolute wrapper so it covers the white background of the app */}
+    <div className="flex flex-col min-h-[calc(100vh-8rem)] w-full pt-8" style={{ backgroundImage: 'radial-gradient(circle at 50% 0%, #1f1f1f 0%, #0a0a0a 70%)', backgroundAttachment: 'fixed' }}>
       <header className="mb-8 max-w-2xl px-margin-page">
         <h1 className="archive-header text-5xl md:text-6xl text-white mb-4 tracking-tighter">My Cinematic Space</h1>
         <p className="text-zinc-400 text-lg leading-relaxed mb-6">Welcome to my personal archive. Browse through the collection like a bookshelf—each frame holds a story, a memory, and a piece of cinematic history.</p>
@@ -72,8 +71,8 @@ export function BookshelfView({ onMovieSelect, searchQuery, onViewChange }: Book
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.4 }}
               onClick={() => onMovieSelect(movie.id)}
-              className="snap-center shrink-0 flex items-center group cursor-pointer"
-              style={{ width: 'clamp(300px, 40vw, 500px)' }}
+              className="snap-center shrink-0 flex items-center group cursor-pointer h-full"
+              style={{ width: 'clamp(280px, 35vw, 420px)' }}
             >
               {/* The Frame / Book Cover */}
               <div className="relative aspect-[2/3] w-full bg-zinc-900 border-[12px] border-zinc-800 shadow-2xl rounded-sm overflow-hidden z-10 transition-all duration-500 group-hover:-translate-y-4 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
@@ -89,7 +88,7 @@ export function BookshelfView({ onMovieSelect, searchQuery, onViewChange }: Book
               </div>
 
               {/* The Book Page / Slide-out Details */}
-              <div className="hidden md:flex flex-col justify-center bg-zinc-900/90 border border-zinc-800 backdrop-blur-md p-8 shadow-xl -ml-12 pl-16 rounded-r-lg opacity-0 -translate-x-10 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 h-[80%] max-w-[300px] z-0">
+              <div className="hidden md:flex flex-col justify-center bg-zinc-900/90 border border-zinc-800 backdrop-blur-md p-8 shadow-xl -ml-12 pl-16 rounded-r-lg opacity-0 -translate-x-10 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 h-[92%] my-auto max-w-[300px] z-0">
                 <span className="text-xs font-mono tracking-widest text-zinc-500 uppercase mb-4">Director</span>
                 <span className="text-white font-medium text-lg mb-6">{movie.director}</span>
                 <p className="text-zinc-400 text-sm leading-relaxed line-clamp-6">
@@ -108,8 +107,8 @@ export function BookshelfView({ onMovieSelect, searchQuery, onViewChange }: Book
             animate={{ opacity: 1, scale: 1 }}
             whileHover={{ scale: 1.02 }}
             onClick={onViewChange}
-            className="snap-center shrink-0 flex items-center justify-center group cursor-pointer"
-            style={{ width: 'clamp(300px, 40vw, 500px)' }}
+            className="snap-center shrink-0 flex items-center justify-center group cursor-pointer h-full"
+            style={{ width: 'clamp(280px, 35vw, 420px)' }}
           >
             <div className="relative aspect-[2/3] w-full border-[2px] border-dashed border-zinc-800 hover:border-zinc-500 rounded-sm flex flex-col items-center justify-center text-zinc-500 hover:text-white transition-all duration-300">
               <span className="text-2xl mb-2">⊞</span>
