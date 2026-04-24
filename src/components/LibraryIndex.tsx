@@ -1,7 +1,20 @@
 import { movies } from '../data';
 import { motion } from 'motion/react';
+import { useState } from 'react';
 
-export function LibraryIndex() {
+interface LibraryIndexProps {
+  onMovieSelect: (id: string) => void;
+}
+
+export function LibraryIndex({ onMovieSelect }: LibraryIndexProps) {
+  const [selectedDecade, setSelectedDecade] = useState<string>('All');
+
+  const filteredMovies = movies.filter(movie => {
+    if (selectedDecade === 'All') return true;
+    const decadeStart = parseInt(selectedDecade.substring(0, 4), 10);
+    return movie.year >= decadeStart && movie.year < decadeStart + 10;
+  });
+
   return (
     <div className="flex flex-col">
       <header className="mb-stack-xl max-w-2xl">
@@ -25,11 +38,11 @@ export function LibraryIndex() {
             <section>
               <h4 className="archive-label mb-stack-xs uppercase">Decade</h4>
               <ul className="space-y-1">
-                <li><button className="text-[12px] text-secondary hover:text-primary transition-colors">1940s</button></li>
-                <li><button className="text-[12px] text-secondary hover:text-primary transition-colors">1950s</button></li>
-                <li><button className="text-[12px] text-secondary hover:text-primary transition-colors">1960s</button></li>
-                <li><button className="text-[12px] text-primary">1970s</button></li>
-                <li><button className="text-[12px] text-secondary hover:text-primary transition-colors">1980s</button></li>
+                <li><button onClick={() => setSelectedDecade('All')} className={`text-[12px] transition-colors ${selectedDecade === 'All' ? 'text-primary' : 'text-secondary hover:text-primary'}`}>All Objects</button></li>
+                <li><button onClick={() => setSelectedDecade('1990s')} className={`text-[12px] transition-colors ${selectedDecade === '1990s' ? 'text-primary' : 'text-secondary hover:text-primary'}`}>1990s</button></li>
+                <li><button onClick={() => setSelectedDecade('2000s')} className={`text-[12px] transition-colors ${selectedDecade === '2000s' ? 'text-primary' : 'text-secondary hover:text-primary'}`}>2000s</button></li>
+                <li><button onClick={() => setSelectedDecade('2010s')} className={`text-[12px] transition-colors ${selectedDecade === '2010s' ? 'text-primary' : 'text-secondary hover:text-primary'}`}>2010s</button></li>
+                <li><button onClick={() => setSelectedDecade('2020s')} className={`text-[12px] transition-colors ${selectedDecade === '2020s' ? 'text-primary' : 'text-secondary hover:text-primary'}`}>2020s</button></li>
               </ul>
             </section>
             <section>
@@ -54,12 +67,13 @@ export function LibraryIndex() {
           </div>
           
           <div className="space-y-0">
-            {movies.map((movie) => (
+            {filteredMovies.map((movie) => (
               <motion.div 
                 key={movie.id}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
+                onClick={() => onMovieSelect(movie.id)}
                 className="grid grid-cols-12 gap-gutter-grid py-3 hover:bg-surface-container-low transition-colors group cursor-pointer"
               >
                 <div className="col-span-1 text-[12px] text-primary">{movie.year}</div>
@@ -72,7 +86,7 @@ export function LibraryIndex() {
           </div>
 
           <div className="mt-stack-lg flex justify-between items-center border-t border-zinc-100 pt-stack-sm">
-            <span className="text-[11px] text-secondary">Showing 1-50 of 4,821 results</span>
+            <span className="text-[11px] text-secondary">Showing {filteredMovies.length} results</span>
             <div className="flex gap-10">
               <button className="text-[12px] text-secondary hover:text-primary uppercase tracking-widest transition-colors">Prev</button>
               <button className="text-[12px] text-primary uppercase tracking-widest transition-colors">Next</button>

@@ -1,11 +1,302 @@
 [
-  { "id": "1", "year": 1972, "title": "Cries and Whispers", "director": "Ingmar Bergman", "region": "SWEDEN", "idRef": "#AR-00912" },
-  { "id": "2", "year": 1973, "title": "The Spirit of the Beehive", "director": "Víctor Erice", "region": "SPAIN", "idRef": "#AR-00924" },
-  { "id": "3", "year": 1975, "title": "Jeanne Dielman, 23 quai du Commerce", "director": "Chantal Akerman", "region": "BELGIUM", "idRef": "#AR-01004" },
-  { "id": "4", "year": 1976, "title": "The Killing of a Chinese Bookie", "director": "John Cassavetes", "region": "USA", "idRef": "#AR-01122" },
-  { "id": "5", "year": 1977, "title": "House (Hausu)", "director": "Nobuhiko Obayashi", "region": "JAPAN", "idRef": "#AR-01289" },
-  { "id": "6", "year": 1978, "title": "Killer of Sheep", "director": "Charles Burnett", "region": "USA", "idRef": "#AR-01311" },
-  { "id": "7", "year": 1979, "title": "Stalker", "director": "Andrei Tarkovsky", "region": "USSR", "idRef": "#AR-01450" },
-  { "id": "8", "year": 1979, "title": "Being There", "director": "Hal Ashby", "region": "USA", "idRef": "#AR-01482" },
-  { "id": "9", "year": 1971, "title": "A Clockwork Orange", "director": "Stanley Kubrick", "region": "UK", "idRef": "#AR-00855" }
+  {
+    "id": "33f9e743-cbe4-8000-9d2e-f9bc0f3c0df3",
+    "title": "Dune: Part Two",
+    "year": 2024,
+    "director": "Denis Villeneuve",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://i.namu.wiki/i/3PAFkuVUWg9UA7VZrxQaFGecgI99WFMA3GmILqPU7BCOifIxmo6tN3T276DMSiYZ6eqKdUr1wjTnKrWzbo8_jg.webp",
+    "content": "## 난 듄은 재미없더라\n\n김수빈, 윤소예 왜 환장함?\n어이없다\n\n"
+  },
+  {
+    "id": "33f9e743-cbe4-8101-9720-cf398267ba92",
+    "title": "토탈리콜",
+    "year": 1990,
+    "director": "Paul Verhoeven",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/q7uUVw1ryWoYgEKLo3MDBQbctw6.jpg",
+    "content": "테세우스의 배 역설의 영화적 구현. 기억이 조작된 주인공이 '진짜 나'를 찾아가는 과정. 기억 = 정체성이라면, 조작된 기억도 유효한 자아인가?"
+  },
+  {
+    "id": "33f9e743-cbe4-8102-bafa-d03dbdfd579e",
+    "title": "인간수업",
+    "year": 2020,
+    "director": "김진민 (드라마)",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/2LTSggPYwuLvekQgvQfJ310auvP.jpg",
+    "content": "성실한 고등학생이 학비를 벌기 위해 범죄에 뛰어드는 넷플릭스 한국 드라마. 도덕의 회색지대에서 살아남으려는 청소년의 이야기."
+  },
+  {
+    "id": "33f9e743-cbe4-8107-8bae-f7aea7028bf3",
+    "title": "건축학개론",
+    "year": 2012,
+    "director": "이용주",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/6ChBkMt5fwYPtKvbtq8irLfuKHc.jpg",
+    "content": "사랑도 인생도 리셋과 신축은 어렵다. 과거를 안고 증축할 뿐. 건축의 증축 메타포로 인생과 사랑의 축적성을 말한다. 과거의 기억이 현재의 나를 규정한다는 비가역성의 일상적 표현."
+  },
+  {
+    "id": "33f9e743-cbe4-8107-99f3-f47a1bbc01dd",
+    "title": "이상한 나라의 앨리스",
+    "year": 2010,
+    "director": "Tim Burton",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/9PZfYjgz6FeATs3V99FD509KWJf.jpg",
+    "content": "팀 버튼의 다크하고 기괴한 시각으로 재해석한 앨리스. 어린 시절 미적 감수성에 깊은 영향을 준 감독의 세계관. 아웃사이더가 세계를 구한다."
+  },
+  {
+    "id": "33f9e743-cbe4-8112-9206-f23a5cafa3af",
+    "title": "라라랜드",
+    "year": 2016,
+    "director": "Damien Chazelle",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/ad9ndytwOckyShSc0A6tx1rZRkW.jpg",
+    "content": "꿈과 사랑 사이의 선택. 재즈와 영화라는 낡은 것에 대한 헌사. 결말의 '다른 삶'이 남기는 여운 — 이루어지지 않은 것이 더 아름다울 수 있다."
+  },
+  {
+    "id": "33f9e743-cbe4-8117-b926-e32a6495e968",
+    "title": "버닝",
+    "year": 2018,
+    "director": "이창동",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/AlKlezuaJkP2lDEWbJxYv47GeDf.jpg",
+    "content": "무라카미 하루키의 헛간 태우기를 원작으로 한 미스터리. 모호함이 핵심인 영화 — 답을 주지 않고 질문만 남긴다. 청년 세대의 박탈감과 계급 갈등."
+  },
+  {
+    "id": "33f9e743-cbe4-8118-9ff8-d83cf29b0870",
+    "title": "나이브스 아웃",
+    "year": 2019,
+    "director": "Rian Johnson",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/7brBiaaH1sToGV1YBi5EIUnyjo0.jpg",
+    "content": "범인을 초반에 공개하고 '어떻게 빠져나가는가'로 재구성한 추리극. 장르 공식을 뒤엎는 구조적 실험. 현대 미국 계급 구조에 대한 풍자."
+  },
+  {
+    "id": "33f9e743-cbe4-811a-943b-dc8fcc76d4c6",
+    "title": "베이비드라이버",
+    "year": 2017,
+    "director": "Edgar Wright",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/fUfZ2zECULlN0pGPgXkez5rF7Hj.jpg",
+    "content": "음악과 영상이 완벽하게 동기화된 범죄 액션. 이명을 가진 주인공이 음악으로 세상과 연결되는 방식. 사운드트랙이 서사 그 자체인 영화."
+  },
+  {
+    "id": "33f9e743-cbe4-8132-a5b6-e7f938730306",
+    "title": "코렐라인",
+    "year": 2009,
+    "director": "Henry Selick",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/iGp4wBc0ZBVFd2HPicyDgl6Pn1r.jpg",
+    "content": "팀 버튼 감성의 다크 판타지 스톱모션. 완벽해 보이는 '다른 세계'의 이면. 아름다움 뒤에 숨은 공포 — 표면과 본질의 괴리를 다룬다."
+  },
+  {
+    "id": "33f9e743-cbe4-8139-9bd5-de838095054b",
+    "title": "D.P.",
+    "year": 2021,
+    "director": "한준희 (드라마)",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/ufovksqVTNogMdU5LlCVbJSiMVa.jpg",
+    "content": "군대 탈영병을 잡으러 다니며 목격하는 군 내 폭력의 현실. 한국 남성들이 공감하는 군 문화 비판. 현실을 직시하는 불편한 아름다움."
+  },
+  {
+    "id": "33f9e743-cbe4-813f-9116-d6c3d8eef54e",
+    "title": "유령신부",
+    "year": 2005,
+    "director": "Tim Burton",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/dNFskiyB2AGpKJCsh6qviPN03NQ.jpg",
+    "content": "죽은 자의 세계가 산 자의 세계보다 더 따뜻하고 생동감 넘친다는 역설. 팀 버튼 특유의 스톱모션 미학. 사랑과 죽음을 동시에 다루는 감수성."
+  },
+  {
+    "id": "33f9e743-cbe4-813f-a068-e3c649810557",
+    "title": "찰리와 초콜릿 공장",
+    "year": 2005,
+    "director": "Tim Burton",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/iKP6wg3c6COUe8gYutoGG7qcPnO.jpg",
+    "content": "기이하고 화려한 팀 버튼의 색감. 윌리 웡카의 기괴함과 동심의 경계. 어린 시절 팀 버튼 영화로 형성된 미적 감수성의 원형."
+  },
+  {
+    "id": "33f9e743-cbe4-8153-a99c-fc5ca2131bae",
+    "title": "매드맥스: 분노의 도로",
+    "year": 2015,
+    "director": "George Miller",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/cadVm6gKYYukmPysHGCwrawUHHa.jpg",
+    "content": "2시간 내내 달리는 영화. 극한의 액션 속에 페미니즘 서사를 내재한 포스트 아포칼립스. 대사보다 시각 언어로 말하는 영화의 극단적 사례."
+  },
+  {
+    "id": "33f9e743-cbe4-815d-a33f-e687e644b5e1",
+    "title": "아가씨",
+    "year": 2016,
+    "director": "박찬욱",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/62l7g8lUJufEcd1Qz9TbAL5HR9t.jpg",
+    "content": "복잡한 플롯, 강렬한 비주얼, 심리적 긴장감의 극한. 속임수와 배신이 반전을 거듭하며 권력 구조를 전복한다. 박찬욱 감독의 미장센."
+  },
+  {
+    "id": "33f9e743-cbe4-8173-8814-c180e22c72ae",
+    "title": "완벽한 타인",
+    "year": 2018,
+    "director": "이재규",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/9lhxidWwP7iIyw1Zax9gUtdFZXT.jpg",
+    "content": "스마트폰 속 비밀을 모두 공개하는 게임으로 시작되는 디너파티 스릴러. 가장 가까운 사람에게도 숨겨진 진실 — 관계의 껍데기와 본질."
+  },
+  {
+    "id": "33f9e743-cbe4-8178-a0aa-f1c14b824027",
+    "title": "무빙",
+    "year": 2023,
+    "director": "박인제 (드라마)",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/b9MhD5syJ7TbYSeje4wB4oyTzc7.jpg",
+    "content": "초능력을 가진 아이들과 비밀을 안고 사는 부모들. 한국 드라마 역사상 최대 규모의 제작비. 가족과 국가폭력, 세대를 넘나드는 서사가 인상적."
+  },
+  {
+    "id": "33f9e743-cbe4-817b-882c-e6ab189e06be",
+    "title": "반지의 제왕: 반지 원정대",
+    "year": 2001,
+    "director": "Peter Jackson",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/r18JdjImbWDRwkbVDIzWoLQqkCo.jpg",
+    "content": "호빗 시리즈와 함께 좋아하는 판타지 서사시. 방대한 세계관 속 작은 존재들의 위대한 여정. 압도적인 스케일과 영웅 서사의 정수."
+  },
+  {
+    "id": "33f9e743-cbe4-8188-a0a6-e108c5239f8f",
+    "title": "배트맨",
+    "year": 1989,
+    "director": "Tim Burton",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/9SZjh4c1Th7MjBWc8T4x4gdF4yT.jpg",
+    "content": "고딕 건축과 다크한 색감으로 만든 고담시. 영웅과 악당의 경계가 모호한 서사. 팀 버튼이 DC를 자신의 미학으로 완전히 재해석한 작품."
+  },
+  {
+    "id": "33f9e743-cbe4-818b-8634-e730780713bf",
+    "title": "가디언즈 오브 갤럭시",
+    "year": 2014,
+    "director": "James Gunn",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/iDNor7CoQkJoDwIxFUeiyrAqjnh.jpg",
+    "content": "낙오자들의 팀. 유머와 감동이 공존하며 매력적인 캐릭터들이 서로를 가족으로 만들어간다. 사운드트랙이 감정선을 이끄는 탁월한 연출."
+  },
+  {
+    "id": "33f9e743-cbe4-819d-847b-fad3b5b4a1f4",
+    "title": "당신, 거기 있어줄래요",
+    "year": 2016,
+    "director": "홍지영",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/dDiYHHdvZ8kvKdLf5HDJ9z2WxZu.jpg",
+    "content": "시간 여행으로 과거의 자신을 만나 사랑을 구하려는 판타지 로맨스. 기억과 선택, 비가역적 시간에 대한 질문. 프랑스 원작 소설을 한국 배경으로 재해석."
+  },
+  {
+    "id": "33f9e743-cbe4-81a9-b7f7-db4138ed6d12",
+    "title": "A.I. Artificial Intelligence",
+    "year": 2001,
+    "director": "Steven Spielberg",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/v5URBLEZCtICf0DsnEztdrAs4dD.jpg",
+    "content": "감정을 가진 로봇 소년 David의 이야기. 감정을 느끼는 AI는 인간인가? 포스트휴머니즘의 핵심 질문 — '감정을 가진 존재는 무엇으로 정의되는가'를 정면으로 제기한다."
+  },
+  {
+    "id": "33f9e743-cbe4-81ae-9286-c74765101c63",
+    "title": "메가마인드",
+    "year": 2010,
+    "director": "Tom McGrath",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/889qsylbt5Y1TGnwaiKiCcEDaIh.jpg",
+    "content": "악당의 시점에서 바라본 영웅 서사의 해체. 정체성과 역할에 대한 질문 — 태어날 때부터 악당으로 규정된 존재는 악당이어야 하는가."
+  },
+  {
+    "id": "33f9e743-cbe4-81b3-9761-e3dd25f48d28",
+    "title": "스위트홈",
+    "year": 2020,
+    "director": "이응복 (드라마)",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/kJEcSBMPacDJuAihPNmcUEgon1Y.jpg",
+    "content": "인간이 괴물로 변하는 아파트에 갇힌 생존자들. 욕망이 실체화된다는 설정이 인간 내면에 대한 질문과 연결된다. 한국 웹툰 원작의 넷플릭스 시리즈."
+  },
+  {
+    "id": "33f9e743-cbe4-81d1-9ce1-ebc4e183a99e",
+    "title": "아메리칸 뷰티",
+    "year": 1999,
+    "director": "Sam Mendes",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/osdwif0XkFgalOCPksm4Yvczyzc.jpg",
+    "content": "교외 중산층 가정의 공허함을 해부한 영화. 레스터 번햄의 중년의 각성. '세계 > 인간'이 아닌 좁은 세계 안에서 인물의 내면이 무한히 깊어지는 서사. 검정치마의 Lester Burnham도 이 영화에서 왔다."
+  },
+  {
+    "id": "33f9e743-cbe4-81d7-b8bc-f612ed2fa677",
+    "title": "인셉션",
+    "year": 2010,
+    "director": "Christopher Nolan",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/atSxEGstxXRoSKDQFBgqQ5lpGSt.jpg",
+    "content": "꿈의 층위마다 시간 감각이 확장된다. 선형적이지 않은 시간 구조와 정보 전달. 꿈과 현실을 구분할 수 없는 상태에서 기억과 현실의 경계를 탐구한다."
+  },
+  {
+    "id": "33f9e743-cbe4-81e0-b8a0-ceae8ec1ed30",
+    "title": "공각기동대",
+    "year": 1995,
+    "director": "오시이 마모루",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/cY6MliWZqex1alkRJP2izN9Maws.jpg",
+    "content": "사이버네틱 신체에서 '나'란 무엇인가. 고스트(영혼)의 존재 여부를 질문한다. AI와 인간이 공존하는 사회의 조건과 갈등. 기술이 편의와 자유를 동시에 제공하면서 둘 다를 위협한다."
+  },
+  {
+    "id": "33f9e743-cbe4-81e1-9485-f71a49e2bbd3",
+    "title": "가위손",
+    "year": 1990,
+    "director": "Tim Burton",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/ePuSSqXxLuOR7cQz70QsGlx3wsy.jpg",
+    "content": "가위손이라는 신체적 결함이 사회에서의 이방인성을 상징한다. 아웃사이더에 대한 공감과 사회의 편견. 팀 버튼의 자전적 감성이 가장 짙게 담긴 작품."
+  },
+  {
+    "id": "33f9e743-cbe4-81ef-9490-d6845e995178",
+    "title": "이터널 선샤인",
+    "year": 2004,
+    "director": "Michel Gondry",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/jULvvUymAqM18gIDHbMRfKHbCSB.jpg",
+    "content": "기억을 지워도 감정의 흔적은 남는다. 기억이 사라지면 나는 여전히 나인가? 기술은 배경이고, 본질은 인간의 감정. '감정을 다루는 SF가 좋다 — 기술이 발전할수록 인간의 정체성은 흐려지고, 그러기에 더 소중해진다.'"
+  },
+  {
+    "id": "33f9e743-cbe4-81f3-b5f9-c5894afba732",
+    "title": "블레이드 러너",
+    "year": 1982,
+    "director": "Ridley Scott",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/6yXqNiVIoJcMhio10Nkb5QMNeh8.jpg",
+    "content": "레플리컨트에 대한 차별을 통해 '인간이란 무엇인가'를 질문. 인간성의 기준이 자의적임을 드러낸다. 기술이 편의를 제공하면서 동시에 자유와 사생활을 침해하는 이중성. 데카드의 도덕적 딜레마 — 레플리컨트를 '은퇴'시키는 행위의 윤리성."
+  }
 ]

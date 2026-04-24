@@ -12,17 +12,23 @@ import { motion, AnimatePresence } from 'motion/react';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('library');
+  const [selectedMovieId, setSelectedMovieId] = useState<string | null>(null);
+
+  const handleMovieSelect = (id: string) => {
+    setSelectedMovieId(id);
+    setCurrentPage('movie');
+  };
 
   const renderPage = () => {
     switch (currentPage) {
       case 'library':
-        return <LibraryIndex key="library" />;
+        return <LibraryIndex key="library" onMovieSelect={handleMovieSelect} />;
       case 'movie':
-        return <MovieDetail key="movie" />;
+        return <MovieDetail key="movie" movieId={selectedMovieId} onMovieSelect={handleMovieSelect} />;
       case 'sync':
         return <SyncSettings key="sync" />;
       default:
-        return <LibraryIndex key="library" />;
+        return <LibraryIndex key="library" onMovieSelect={handleMovieSelect} />;
     }
   };
 
@@ -39,15 +45,7 @@ export default function App() {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.4, ease: 'easeInOut' }}
           >
-            {/* Simple way to get to detail page for demo */}
-            {currentPage === 'library' && (
-              <button 
-                onClick={() => setCurrentPage('movie')}
-                className="mb-8 archive-label hover:text-black hover:underline underline-offset-4 transition-all"
-              >
-                Featured Entry: Dune: Part Two
-              </button>
-            )}
+            {/* Removed the dummy featured entry button */}
             
             {renderPage()}
           </motion.div>

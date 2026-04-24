@@ -1,34 +1,44 @@
 import { motion } from 'motion/react';
-import { Bookmark, Star } from 'lucide-react';
+import { Bookmark } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import { movies } from '../data';
 
-export function MovieDetail() {
+interface MovieDetailProps {
+  movieId: string | null;
+  onMovieSelect: (id: string) => void;
+}
+
+export function MovieDetail({ movieId, onMovieSelect }: MovieDetailProps) {
+  const movie = movies.find(m => m.id === movieId) || movies[0];
+
   return (
     <div className="flex flex-col items-center">
       <header className="w-full mb-stack-xl">
         <div className="flex flex-col gap-stack-xs mb-stack-lg">
           <span className="archive-label tracking-[0.2em]">Featured Entry</span>
           <h1 className="archive-header text-[min(120px,15vw)] leading-[0.9] font-light tracking-tighter max-w-4xl lowercase">
-            Dune: Part Two
+            {movie?.title}
           </h1>
           <div className="flex gap-stack-md mt-stack-md">
             <div className="flex flex-col">
               <span className="archive-label">Director</span>
-              <span className="text-body-md">Denis Villeneuve</span>
+              <span className="text-body-md">{movie?.director}</span>
             </div>
             <div className="flex flex-col">
               <span className="archive-label">Year</span>
-              <span className="text-body-md">2024</span>
+              <span className="text-body-md">{movie?.year}</span>
             </div>
           </div>
         </div>
 
         <div className="w-full aspect-[21/9] overflow-hidden bg-zinc-100">
             <motion.img 
+            key={movie?.id}
             initial={{ scale: 1.1, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.5, ease: 'easeOut' }}
-            src="https://images.unsplash.com/photo-1509333918005-95079a405903?q=80&w=2070&auto=format&fit=crop" 
-            alt="Dune cinematic still" 
+            src={movie?.thumbnail || "https://images.unsplash.com/photo-1509333918005-95079a405903?q=80&w=2070&auto=format&fit=crop"} 
+            alt={movie?.title} 
             className="w-full h-full object-cover grayscale brightness-90 transition-all duration-1000"
           />
         </div>
@@ -41,16 +51,12 @@ export function MovieDetail() {
             <div className="text-h3 font-light tracking-tighter">9.2/10</div>
           </div>
 
-          <article className="flex flex-col gap-stack-md text-body-lg text-primary leading-relaxed">
-            <p>
-              A rare instance where the scale of the frame is matched by the depth of its narrative ambition. Villeneuve continues his pursuit of brutalist science fiction, where the architecture of the world defines the architecture of the soul.
-            </p>
-            <p>
-              In Part Two, the silence of the desert becomes a character itself. The sound design is not merely additive; it is subtractive, stripping away the excess of modern blockbusters to leave only the resonance of sand and spice. The performance of Chalamet has matured into something colder, more terrifying, bridging the gap between messianic hope and inevitable tragedy.
-            </p>
-            <p>
-              The visual language relies on high-contrast lighting and immense negative space, mirroring the isolation of its protagonists. It is an archival piece of filmmaking—a record of what happens when a director is given the resources to build a universe without compromise.
-            </p>
+          <article className="flex flex-col gap-stack-md text-body-lg text-primary leading-relaxed markdown-content">
+            {movie?.content ? (
+              <ReactMarkdown>{movie.content}</ReactMarkdown>
+            ) : (
+              <p className="text-secondary italic">No review content available.</p>
+            )}
           </article>
 
           <footer className="mt-stack-lg flex flex-wrap gap-6 items-center border-t border-zinc-100 pt-10">
@@ -75,35 +81,28 @@ export function MovieDetail() {
           <button className="archive-label hover:text-black transition-colors">View All (428)</button>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-gutter-grid">
-          <MovieCard 
-            title="Burning" 
-            director="Lee Chang-dong" 
-            year={2018} 
-            image="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1925&auto=format&fit=crop"
-          />
-          <MovieCard 
-            title="La La Land" 
-            director="Damien Chazelle" 
-            year={2016} 
-            image="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop"
-          />
-          <MovieCard 
-            title="Dune: Part Two" 
-            director="Denis Villeneuve" 
-            year={2024} 
-            image="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=2070&auto=format&fit=crop"
-          />
+          {movies.slice(0, 3).map((m) => (
+            <MovieCard 
+              key={m.id}
+              title={m.title} 
+              director={m.director} 
+              year={m.year} 
+              image={m.thumbnail || "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1925&auto=format&fit=crop"}
+              onClick={() => onMovieSelect(m.id)}
+            />
+          ))}
         </div>
       </section>
     </div>
   );
 }
 
-function MovieCard({ title, director, year, image }: { title: string; director: string; year: number; image: string }) {
+function MovieCard({ title, director, year, image, onClick }: { title: string; director: string; year: number; image: string; onClick: () => void }) {
   return (
     <motion.div 
       whileHover={{ y: -5 }}
       className="group cursor-pointer"
+      onClick={onClick}
     >
       <div className="aspect-[2/3] bg-zinc-100 overflow-hidden mb-stack-sm">
         <img src={image} alt={title} className="w-full h-full object-cover grayscale transition-all duration-700" />
