@@ -67,9 +67,7 @@
 
 @layer base {
   body {
-    @apply bg-[#0a0a0a] text-zinc-300 font-sans antialiased selection:bg-zinc-800 selection:text-white;
-    background-image: radial-gradient(circle at 50% 0%, #1f1f1f 0%, #0a0a0a 70%);
-    background-attachment: fixed;
+    @apply bg-white text-on-surface font-sans antialiased selection:bg-black selection:text-white;
   }
 }
 

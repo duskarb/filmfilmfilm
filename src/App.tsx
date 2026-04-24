@@ -6,6 +6,7 @@
 import { useState } from 'react';
 import { Navbar, Footer } from './components/Navigation';
 import { LibraryIndex } from './components/LibraryIndex';
+import { BookshelfView } from './components/BookshelfView';
 import { MovieDetail } from './components/MovieDetail';
 import { SyncSettings } from './components/SyncSettings';
 import { motion, AnimatePresence } from 'motion/react';
@@ -24,6 +25,8 @@ export default function App() {
     switch (currentPage) {
       case 'library':
         return <LibraryIndex key="library" onMovieSelect={handleMovieSelect} searchQuery={searchQuery} />;
+      case 'bookshelf':
+        return <BookshelfView key="bookshelf" onMovieSelect={handleMovieSelect} searchQuery={searchQuery} />;
       case 'movie':
         return <MovieDetail key="movie" movieId={selectedMovieId} onMovieSelect={handleMovieSelect} />;
       case 'sync':
