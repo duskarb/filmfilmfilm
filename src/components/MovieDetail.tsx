@@ -55,7 +55,7 @@ export function MovieDetail({ movieId, onMovieSelect, starredIds, toggleStar }: 
         </div>
 
         {/* Body */}
-        <article className="prose prose-zinc dark:prose-invert prose-lg md:prose-xl max-w-none text-zinc-800 dark:text-zinc-300 leading-[1.8] font-sans font-light tracking-wide">
+        <article className="prose prose-zinc dark:prose-invert prose-lg md:prose-xl max-w-none [&_p]:text-black dark:[&_p]:text-zinc-100 leading-[1.8] font-sans font-normal">
           {movie?.content ? (
             <ReactMarkdown>{movie.content}</ReactMarkdown>
           ) : (
