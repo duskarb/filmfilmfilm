@@ -8,7 +8,7 @@ interface BookshelfViewProps {
   onViewChange: () => void;
 }
 
-export function BookshelfView({ onMovieSelect, searchQuery }: BookshelfViewProps) {
+export function BookshelfView({ onMovieSelect, searchQuery, onViewChange }: BookshelfViewProps) {
   const [selectedDecade, setSelectedDecade] = useState<string>('All');
   const [selectedRegion, setSelectedRegion] = useState<string>('All');
   const [selectedFormat, setSelectedFormat] = useState<string>('All');
