@@ -5,9 +5,10 @@ import { useState } from 'react';
 interface LibraryIndexProps {
   onMovieSelect: (id: string) => void;
   searchQuery: string;
+  onViewChange: () => void;
 }
 
-export function LibraryIndex({ onMovieSelect, searchQuery }: LibraryIndexProps) {
+export function LibraryIndex({ onMovieSelect, searchQuery, onViewChange }: LibraryIndexProps) {
   const [selectedDecade, setSelectedDecade] = useState<string>('All');
   const [selectedRegion, setSelectedRegion] = useState<string>('All');
   const [selectedFormat, setSelectedFormat] = useState<string>('All');
@@ -36,9 +37,17 @@ export function LibraryIndex({ onMovieSelect, searchQuery }: LibraryIndexProps) 
 
   return (
     <div className="flex flex-col">
-      <header className="mb-stack-xl max-w-2xl">
-        <h1 className="archive-header text-h1 mb-stack-sm">Library Index</h1>
-        <p className="text-body-lg text-secondary">A comprehensive chronological record of cinematic history. Curated metadata for the preservation of movement and sound.</p>
+      <header className="mb-stack-xl max-w-2xl flex flex-col items-start gap-4">
+        <div>
+          <h1 className="archive-header text-h1 mb-stack-sm">Library Index</h1>
+          <p className="text-body-lg text-secondary">A comprehensive chronological record of cinematic history. Curated metadata for the preservation of movement and sound.</p>
+        </div>
+        <button 
+          onClick={onViewChange}
+          className="px-4 py-2 border border-zinc-200 text-black text-sm hover:bg-black hover:text-white transition-colors rounded-sm uppercase tracking-widest font-bold"
+        >
+          ⊞ Switch to Slide View
+        </button>
       </header>
 
       <div className="flex flex-col md:flex-row gap-gutter-grid">

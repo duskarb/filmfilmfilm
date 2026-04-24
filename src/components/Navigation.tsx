@@ -7,7 +7,7 @@ interface NavbarProps {
 }
 
 export function Navbar({ currentPage, onPageChange, onSearch }: NavbarProps) {
-  const isDark = currentPage === 'bookshelf';
+  const isDark = currentPage === 'library' || currentPage === 'movie';
 
   return (
     <nav className={`fixed top-0 w-full z-50 px-margin-page py-10 flex justify-between items-center backdrop-blur-md border-b transition-colors duration-500 ${isDark ? 'bg-[#0a0a0a]/80 text-zinc-300 border-zinc-900/50' : 'bg-white/80 border-zinc-100 text-black'}`}>
@@ -21,15 +21,9 @@ export function Navbar({ currentPage, onPageChange, onSearch }: NavbarProps) {
       <div className="hidden md:flex items-center gap-10 font-sans text-sm tracking-tight">
         <button 
           onClick={() => onPageChange('library')}
-          className={`${currentPage === 'library' ? (isDark ? 'text-white underline underline-offset-8 decoration-zinc-500' : 'text-black underline underline-offset-8') : (isDark ? 'text-zinc-500' : 'text-secondary')} hover:${isDark ? 'text-white' : 'text-black'} transition-colors`}
+          className={`${(currentPage === 'library' || currentPage === 'library-grid') ? (isDark ? 'text-white underline underline-offset-8 decoration-zinc-500' : 'text-black underline underline-offset-8') : (isDark ? 'text-zinc-500' : 'text-secondary')} hover:${isDark ? 'text-white' : 'text-black'} transition-colors`}
         >
-          Grid View
-        </button>
-        <button 
-          onClick={() => onPageChange('bookshelf')}
-          className={`${currentPage === 'bookshelf' ? 'text-white underline underline-offset-8 decoration-zinc-500' : (isDark ? 'text-zinc-500' : 'text-secondary')} hover:${isDark ? 'text-white' : 'text-black'} transition-colors`}
-        >
-          Slide View
+          Library
         </button>
         <button 
           onClick={() => onPageChange('collections')}

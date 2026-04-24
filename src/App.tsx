@@ -24,9 +24,9 @@ export default function App() {
   const renderPage = () => {
     switch (currentPage) {
       case 'library':
-        return <LibraryIndex key="library" onMovieSelect={handleMovieSelect} searchQuery={searchQuery} />;
-      case 'bookshelf':
-        return <BookshelfView key="bookshelf" onMovieSelect={handleMovieSelect} searchQuery={searchQuery} />;
+        return <BookshelfView key="bookshelf" onMovieSelect={handleMovieSelect} searchQuery={searchQuery} onViewChange={() => setCurrentPage('library-grid')} />;
+      case 'library-grid':
+        return <LibraryIndex key="library" onMovieSelect={handleMovieSelect} searchQuery={searchQuery} onViewChange={() => setCurrentPage('library')} />;
       case 'movie':
         return <MovieDetail key="movie" movieId={selectedMovieId} onMovieSelect={handleMovieSelect} />;
       case 'sync':
@@ -41,7 +41,7 @@ export default function App() {
           </div>
         );
       default:
-        return <LibraryIndex key="library" onMovieSelect={handleMovieSelect} searchQuery={searchQuery} />;
+        return <BookshelfView key="bookshelf" onMovieSelect={handleMovieSelect} searchQuery={searchQuery} onViewChange={() => setCurrentPage('library-grid')} />;
     }
   };
 

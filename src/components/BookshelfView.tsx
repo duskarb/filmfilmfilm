@@ -1,10 +1,11 @@
 import { movies } from '../data';
 import { motion } from 'motion/react';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 interface BookshelfViewProps {
   onMovieSelect: (id: string) => void;
   searchQuery: string;
+  onViewChange: () => void;
 }
 
 export function BookshelfView({ onMovieSelect, searchQuery }: BookshelfViewProps) {
@@ -13,6 +14,24 @@ export function BookshelfView({ onMovieSelect, searchQuery }: BookshelfViewProps
   const [selectedFormat, setSelectedFormat] = useState<string>('All');
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 10;
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      // Only trigger if we're scrolling vertically (deltaY)
+      if (e.deltaY !== 0) {
+        e.preventDefault();
+        el.scrollBy({ left: e.deltaY, behavior: 'auto' });
+      }
+    };
+
+    el.addEventListener('wheel', handleWheel, { passive: false });
+    return () => el.removeEventListener('wheel', handleWheel);
+  }, []);
 
   const filteredMovies = movies.filter(movie => {
     // Search query
@@ -37,14 +56,20 @@ export function BookshelfView({ onMovieSelect, searchQuery }: BookshelfViewProps
   return (
     <div className="flex flex-col min-h-screen bg-[#0a0a0a] text-zinc-300 w-full absolute inset-0 z-40 pt-32" style={{ backgroundImage: 'radial-gradient(circle at 50% 0%, #1f1f1f 0%, #0a0a0a 70%)', backgroundAttachment: 'fixed' }}>
       {/* We add an absolute wrapper so it covers the white background of the app */}
-      <header className="mb-16 max-w-2xl px-margin-page">
+      <header className="mb-8 max-w-2xl px-margin-page">
         <h1 className="archive-header text-5xl md:text-6xl text-white mb-4 tracking-tighter">My Cinematic Space</h1>
-        <p className="text-zinc-400 text-lg leading-relaxed">Welcome to my personal archive. Browse through the collection like a bookshelf—each frame holds a story, a memory, and a piece of cinematic history.</p>
+        <p className="text-zinc-400 text-lg leading-relaxed mb-6">Welcome to my personal archive. Browse through the collection like a bookshelf—each frame holds a story, a memory, and a piece of cinematic history.</p>
+        <button 
+          onClick={onViewChange}
+          className="px-4 py-2 bg-zinc-900 border border-zinc-800 text-zinc-300 text-sm hover:bg-white hover:text-black transition-colors rounded-sm uppercase tracking-widest font-bold"
+        >
+          ⊞ Switch to Grid View
+        </button>
       </header>
 
       {/* Interactive Bookshelf / Horizontal Scroll */}
       <div className="flex-grow w-full overflow-hidden relative">
-        <div className="flex gap-12 overflow-x-auto pb-16 pt-8 px-margin-page snap-x snap-mandatory hide-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <div ref={scrollRef} className="flex gap-12 overflow-x-auto pb-16 pt-8 px-margin-page snap-x snap-mandatory hide-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {currentMovies.map((movie) => (
             <motion.div 
               key={movie.id}
