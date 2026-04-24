@@ -102,20 +102,6 @@ export function BookshelfView({ onMovieSelect, searchQuery, onViewChange, starre
                   <span className="text-zinc-400 text-sm">{movie.year}</span>
                 </div>
               </div>
-
-              {/* The Book Page / Slide-out Details */}
-              <div className="hidden md:flex flex-col justify-center bg-zinc-900/95 border border-zinc-800 backdrop-blur-xl p-8 shadow-2xl rounded-r-lg opacity-0 transition-all duration-500 h-[96%] w-[320px] absolute right-0 top-1/2 -translate-y-1/2 z-10 group-hover:opacity-100 group-hover:translate-x-[95%] group-hover:-translate-y-[55%] pointer-events-none group-hover:pointer-events-auto">
-                <div className="pl-4 border-l border-zinc-700/50 h-full flex flex-col justify-center">
-                <span className="text-xs font-mono tracking-widest text-zinc-500 uppercase mb-4">Director</span>
-                <span className="text-white font-medium text-lg mb-6">{movie.director}</span>
-                <p className="text-zinc-400 text-sm leading-relaxed line-clamp-6">
-                  {movie.content?.replace(/[#_*\[\]]/g, '') || "A profound piece of cinema captured in time."}
-                </p>
-                <div className="mt-8">
-                  <span className="text-xs uppercase tracking-widest text-zinc-500 hover:text-white transition-colors border-b border-zinc-700 pb-1 w-max cursor-pointer">Read Log →</span>
-                </div>
-                </div>
-              </div>
             </motion.div>
           ))}
           
