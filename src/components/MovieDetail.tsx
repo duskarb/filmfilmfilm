@@ -12,7 +12,8 @@ export function MovieDetail({ movieId, onMovieSelect }: MovieDetailProps) {
   const movie = movies.find(m => m.id === movieId) || movies[0];
 
   return (
-    <div className="flex flex-col md:flex-row gap-12 pt-8">
+    <>
+      <div className="flex flex-col md:flex-row gap-12 pt-8">
       {/* Left Column: Fixed Meta Info */}
       <aside className="w-full md:w-1/3 flex-shrink-0">
         <div className="md:sticky md:top-40 flex flex-col gap-8">
@@ -88,7 +89,7 @@ export function MovieDetail({ movieId, onMovieSelect }: MovieDetailProps) {
           ))}
         </div>
       </section>
-    </div>
+    </>
   );
 }
 
