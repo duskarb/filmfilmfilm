@@ -24,6 +24,7 @@ export default function App() {
       return [];
     }
   });
+  const [contentOverrides, setContentOverrides] = useState<Record<string, string>>({});
 
   useEffect(() => {
     localStorage.setItem('starred_movies', JSON.stringify(starredIds));
@@ -51,14 +52,18 @@ export default function App() {
     setCurrentPage('movie');
   };
 
+  const handleContentSave = (movieId: string, newContent: string) => {
+    setContentOverrides(prev => ({ ...prev, [movieId]: newContent }));
+  };
+
   const renderPage = () => {
     switch (currentPage) {
       case 'library':
-        return <BookshelfView key="bookshelf" onMovieSelect={handleMovieSelect} searchQuery={searchQuery} onViewChange={() => setCurrentPage('library-grid')} starredIds={starredIds} toggleStar={toggleStar} />;
+        return <BookshelfView key="bookshelf" theme={theme} onMovieSelect={handleMovieSelect} searchQuery={searchQuery} onViewChange={() => setCurrentPage('library-grid')} starredIds={starredIds} toggleStar={toggleStar} />;
       case 'library-grid':
         return <LibraryIndex key="library" onMovieSelect={handleMovieSelect} searchQuery={searchQuery} onViewChange={() => setCurrentPage('library')} starredIds={starredIds} toggleStar={toggleStar} />;
       case 'movie':
-        return <MovieDetail key="movie" movieId={selectedMovieId} onMovieSelect={handleMovieSelect} starredIds={starredIds} toggleStar={toggleStar} />;
+        return <MovieDetail key="movie" movieId={selectedMovieId} onMovieSelect={handleMovieSelect} starredIds={starredIds} toggleStar={toggleStar} contentOverrides={contentOverrides} onContentSave={handleContentSave} />;
       case 'sync':
         return <SyncSettings key="sync" />;
       case 'collections':
@@ -71,14 +76,14 @@ export default function App() {
           </div>
         );
       default:
-        return <BookshelfView key="bookshelf" onMovieSelect={handleMovieSelect} searchQuery={searchQuery} onViewChange={() => setCurrentPage('library-grid')} starredIds={starredIds} toggleStar={toggleStar} />;
+        return <BookshelfView key="bookshelf" theme={theme} onMovieSelect={handleMovieSelect} searchQuery={searchQuery} onViewChange={() => setCurrentPage('library-grid')} starredIds={starredIds} toggleStar={toggleStar} />;
     }
   };
 
   return (
     <div className={`min-h-screen flex flex-col pt-32 transition-colors duration-500 ${theme === 'dark' ? 'bg-[#0a0a0a] text-zinc-300' : 'bg-white text-black'}`}>
       <Navbar currentPage={currentPage} onPageChange={setCurrentPage} onSearch={setSearchQuery} theme={theme} toggleTheme={toggleTheme} />
-      
+
       <main className="flex-grow w-full">
         <AnimatePresence mode="wait">
           <motion.div
@@ -88,8 +93,6 @@ export default function App() {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.4, ease: 'easeInOut' }}
           >
-            {/* Removed the dummy featured entry button */}
-            
             {renderPage()}
           </motion.div>
         </AnimatePresence>
@@ -99,4 +102,3 @@ export default function App() {
     </div>
   );
 }
-

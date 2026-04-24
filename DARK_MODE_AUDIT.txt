@@ -1,0 +1,175 @@
+=== DARK MODE INCONSISTENCIES & MISSING CSS TOKENS AUDIT ===
+Generated: 2026-04-25
+
+## 1. CSS CUSTOM PROPERTIES IN src/index.css
+=================================================
+
+DEFINED CSS CUSTOM PROPERTIES:
+- Colors (54 total): All Material Design 3 tokens with prefix --color-*
+  - Includes: surface, on-surface, primary, on-primary, secondary, tertiary, error, outline, etc.
+- Spacing (5 tokens): --spacing-margin-page, --spacing-gutter-grid, --spacing-stack-*
+- Radius (3 tokens): --radius-default, --radius-lg, --radius-xl (all set to 0px)
+- Font (1 token): --font-sans
+
+MISSING CSS TOKENS (Referenced but NOT defined):
+✗ text-h1 - UNDEFINED (referenced in LibraryIndex.tsx:57, App.tsx:69, SyncSettings.tsx:8)
+✗ text-h2 - UNDEFINED (NOT found in codebase)
+✗ text-h3 - UNDEFINED (referenced in LibraryIndex.tsx:200, SyncSettings.tsx:22)
+✗ text-body-lg - UNDEFINED (referenced in LibraryIndex.tsx:58, 155, SyncSettings.tsx:9)
+✗ text-body-md - UNDEFINED (referenced in SyncSettings.tsx:42, 46, 50, 121)
+
+NOTE: Tailwind v4 @theme uses @import "tailwindcss" with CSS custom properties, but 
+text-h1/h2/h3/body-lg/body-md are NOT defined as --text-* properties anywhere.
+
+---
+
+## 2. HARDCODED COLOR CLASSES WITHOUT DARK: VARIANTS
+====================================================
+
+### LibraryIndex.tsx
+Line 63:  border-zinc-200  [missing dark: variant]
+Line 63:  text-black      [missing dark: variant]
+Line 63:  hover:bg-black hover:text-white  [no dark: prefix]
+Line 107: border-zinc-300 [missing dark: variant]
+Line 108: text-black      [missing dark: variant]
+Line 112: border-zinc-200 [missing dark: variant]
+Line 112: text-zinc-500 hover:text-black hover:bg-zinc-100  [all missing dark:]
+Line 131: bg-zinc-200     [missing dark: variant]
+Line 136: text-white/80 hover:text-white  [hardcoded white, no dark mode fallback]
+Line 148: bg-black/0 group-hover:bg-black/10  [hardcoded black]
+Line 149: text-white bg-black/50  [hardcoded colors]
+Line 155: text-black      [missing dark: variant]
+Line 163: border-zinc-300 [missing dark: variant]
+Line 171: text-zinc-300   [disabled state color - missing dark: variant]
+Line 171: text-black hover:text-zinc-500  [missing dark:]
+Line 178: text-zinc-300   [disabled state color - missing dark: variant]
+Line 178: text-black hover:text-zinc-500  [missing dark:]
+Line 190: bg-zinc-100     [missing dark: variant]
+Line 198: bg-zinc-100     [missing dark: variant]
+Line 202: bg-black text-white  [hardcoded]
+
+### BookshelfView.tsx
+Line 66:  text-white      [hardcoded, no dark: variant needed but inconsistent philosophy]
+Line 88:  bg-zinc-900     [missing dark: variant]
+Line 93:  text-white/80 hover:text-white  [hardcoded white]
+Line 101: text-white      [hardcoded white]
+Line 102: text-zinc-400   [missing dark: variant]
+Line 116: border-zinc-800 hover:border-zinc-500  [missing dark:]
+Line 116: text-zinc-500 hover:text-white  [missing dark:]
+
+### MovieDetail.tsx
+Line 22:  bg-black/50 text-white  [hardcoded]
+Line 58:  [&_p]:text-black dark:[&_p]:text-zinc-100  [INCONSISTENT: prose-zinc used but manually overriding]
+Line 67:  border-zinc-200/50  [missing dark: variant]
+Line 67:  text-zinc-500   [missing dark: variant]
+Line 73:  hover:text-black dark:hover:text-white  [CORRECT dark: variant present]
+
+### Navigation.tsx
+Line 15:  Uses ternary string interpolation for dark mode - NOT using dark: classes
+          Instead uses: ${isDark ? 'bg-[#0a0a0a]/80 ...' : 'bg-white/80 ...'}
+          This bypasses Tailwind CSS dark mode entirely
+Line 15:  border-zinc-900/50 (dark) / border-zinc-100 (light)
+Line 15:  text-zinc-300 (dark) / text-black (light)
+Line 17:  text-white (dark) / text-black (light)
+Line 26-32: All nav buttons use ternary string interpolation, NO dark: classes
+Line 47:  Uses ternary for border-zinc-800 / border-zinc-200, no dark: classes
+Line 47:  Uses ternary for text-white / text-black, no dark: classes
+Line 65:  Uses ternary: border-zinc-900 / border-zinc-100
+Line 65:  Uses ternary: bg-[#0a0a0a] / bg-white
+Line 67:  text-zinc-400 (dark) / text-black (light) - ternary
+
+### SyncSettings.tsx
+Line 17:  bg-white        [hardcoded, no dark: variant]
+Line 27:  bg-white        [hardcoded, no dark: variant]
+Line 41:  border-zinc-200/50  [missing dark: variant]
+Line 45:  border-zinc-200/50  [missing dark: variant]
+Line 80:  bg-black        [missing dark: variant]
+Line 101: border-black bg-black text-white  [hardcoded colors]
+Line 107: bg-white text-black hover:bg-zinc-200  [missing dark:]
+Line 124: bg-black (active) / bg-zinc-200 (inactive)  [ternary, no dark: classes]
+Line 125: bg-white        [hardcoded, no dark: variant]
+
+---
+
+## 3. THEME PROP PASSING ANALYSIS
+================================
+
+BookshelfView.tsx:
+✓ Receives no theme prop
+✓ Does NOT use dark: classes (hardcoded colors throughout)
+✗ No way to respond to theme changes dynamically
+
+LibraryIndex.tsx:
+✓ Receives no theme prop
+✓ Does NOT use dark: classes (hardcoded colors throughout)
+✗ No way to respond to theme changes dynamically
+
+MovieDetail.tsx:
+✓ Receives no theme prop
+✓ Partially uses dark: classes (line 73 only)
+✗ Inconsistent dark mode support
+
+App.tsx:
+✓ Manages theme state: useState<'light' | 'dark'>('dark')
+✓ Applies class to root: document.documentElement.classList.add('dark')
+✓ Passes theme to Navbar and Footer (Navigation.tsx)
+✗ DOES NOT pass theme prop to any child components (LibraryIndex, BookshelfView, MovieDetail)
+✗ Components use ternary string interpolation instead of Tailwind dark: classes
+
+---
+
+## 4. DARK MODE STRATEGY ISSUES
+===============================
+
+CURRENT IMPLEMENTATION:
+1. App.tsx adds/removes 'dark' class to documentElement
+2. Navigation.tsx manually creates ternary class strings based on theme prop
+3. Other components either:
+   a) Hardcode light mode colors (LibraryIndex, BookshelfView, SyncSettings)
+   b) Use mixed approach (MovieDetail)
+   c) Bypass Tailwind entirely via ternary logic (Navigation)
+
+PROBLEMS:
+✗ Theme prop not passed to child components that need it
+✗ No consistent dark: variant usage across components
+✗ Many hardcoded color values with no dark mode fallback
+✗ Navigation uses runtime ternaries instead of CSS dark mode
+✗ Tailwind dark mode would work better with dark: classes
+
+MISSING CSS TOKENS (undefined typography):
+✗ text-h1, text-h2, text-h3, text-body-lg, text-body-md
+
+---
+
+## 5. SUMMARY OF ISSUES
+========================
+
+HARDCODED COLORS MISSING DARK: VARIANTS:
+Total Issues: 34+ instances across 5 files
+
+By Severity:
+CRITICAL (hardcoded, no fallback):
+- bg-white (5 instances: SyncSettings 17, 27)
+- bg-black (4+ instances: LibraryIndex 149, 202, SyncSettings 80, 101)
+- text-black (6+ instances: LibraryIndex 63, 108, 155, 171, 178; Navigation line 17 ternary)
+- text-white (7+ instances: BookshelfView 66, 93, 101; MovieDetail 22; LibraryIndex 149; SyncSettings 101)
+
+HIGH (missing dark: but using zinc scales):
+- border-zinc-* (12+ instances without dark:)
+- text-zinc-* (8+ instances without dark:)
+- bg-zinc-* (8+ instances without dark:)
+
+ARCHITECTURAL:
+- Navigation uses ternary interpolation instead of dark: classes
+- Theme state not passed to child components
+- No dark: mode support in LibraryIndex, BookshelfView, SyncSettings
+
+UNDEFINED CSS TOKENS:
+- --text-h1 (used on lines: LibraryIndex 57, App.tsx 69, SyncSettings 8)
+- --text-h3 (used on lines: LibraryIndex 200, SyncSettings 22)
+- --text-body-lg (used on lines: LibraryIndex 58, 155, SyncSettings 9)
+- --text-body-md (used on lines: SyncSettings 42, 46, 50, 121)
+
+TAILWIND VERSION: v4 (@import "tailwindcss" with CSS custom properties in @theme block)
+CONFIGURATION: Uses vite plugin @tailwindcss/vite
+

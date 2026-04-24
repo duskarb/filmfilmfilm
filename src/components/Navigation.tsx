@@ -13,42 +13,46 @@ export function Navbar({ currentPage, onPageChange, onSearch, theme, toggleTheme
 
   return (
     <nav className={`fixed top-0 w-full z-50 px-margin-page py-10 flex justify-between items-center backdrop-blur-md border-b transition-colors duration-500 ${isDark ? 'bg-[#0a0a0a]/80 text-zinc-300 border-zinc-900/50' : 'bg-white/80 border-zinc-100 text-black'}`}>
-      <div 
+      <div
         className={`text-lg font-bold tracking-tighter uppercase cursor-pointer ${isDark ? 'text-white' : 'text-black'}`}
         onClick={() => onPageChange('library')}
       >
         The Archive
       </div>
-      
+
       <div className="hidden md:flex items-center gap-10 font-sans text-sm tracking-tight">
-        <button 
+        <button
           onClick={() => onPageChange('library')}
           className={`${(currentPage === 'library' || currentPage === 'library-grid') ? (isDark ? 'text-white underline underline-offset-8 decoration-zinc-500' : 'text-black underline underline-offset-8') : (isDark ? 'text-zinc-500' : 'text-secondary')} hover:${isDark ? 'text-white' : 'text-black'} transition-colors`}
         >
           Library
         </button>
-        <button 
+        <button
           onClick={() => onPageChange('collections')}
-          className={`${currentPage === 'collections' ? 'text-black underline underline-offset-8' : (isDark ? 'text-zinc-500' : 'text-secondary')} hover:${isDark ? 'text-white' : 'text-black'} transition-colors`}
+          className={`${currentPage === 'collections' ? (isDark ? 'text-white underline underline-offset-8 decoration-zinc-500' : 'text-black underline underline-offset-8') : (isDark ? 'text-zinc-500' : 'text-secondary')} hover:${isDark ? 'text-white' : 'text-black'} transition-colors`}
         >
           Collections
         </button>
       </div>
 
       <div className="flex items-center gap-8">
-        <button onClick={toggleTheme} className="hover:opacity-70 transition-opacity">
+        <button
+          aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+          onClick={toggleTheme}
+          className="hover:opacity-70 transition-opacity"
+        >
           {isDark ? <Sun size={16} /> : <Moon size={16} />}
         </button>
         <div className="hidden lg:block relative">
-          <input 
-            type="text" 
-            placeholder="Search the record..." 
+          <input
+            type="text"
+            placeholder="Search the record..."
             onChange={(e) => onSearch(e.target.value)}
             className={`border-b bg-transparent py-1 text-[12px] focus:outline-none transition-all w-48 ${isDark ? 'border-zinc-800 focus:border-white text-white placeholder-zinc-600' : 'border-zinc-200 focus:border-black text-black'}`}
           />
           <Search size={14} className={`absolute right-0 top-2 pointer-events-none ${isDark ? 'text-zinc-600' : 'text-zinc-400'}`} />
         </div>
-        <button 
+        <button
           onClick={() => onPageChange('sync')}
           className={`${currentPage === 'sync' ? (isDark ? 'text-white underline underline-offset-8' : 'text-black underline underline-offset-8') : (isDark ? 'text-zinc-500' : 'text-secondary')} hover:${isDark ? 'text-white' : 'text-black'} transition-colors`}
         >

@@ -17,9 +17,18 @@ export default defineConfig(({mode}) => {
       },
     },
     server: {
-      // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
+      proxy: {
+        '/api/notion': {
+          target: 'https://api.notion.com',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api\/notion/, ''),
+          headers: {
+            Authorization: `Bearer ${env.NOTION_TOKEN}`,
+            'Notion-Version': '2022-06-28',
+          },
+        },
+      },
     },
   };
 });
