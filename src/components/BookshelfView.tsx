@@ -1,14 +1,17 @@
 import { movies } from '../data';
 import { motion } from 'motion/react';
 import { useState, useRef, useEffect } from 'react';
+import { Star } from 'lucide-react';
 
 interface BookshelfViewProps {
   onMovieSelect: (id: string) => void;
   searchQuery: string;
   onViewChange: () => void;
+  starredIds: string[];
+  toggleStar: (id: string, e?: React.MouseEvent) => void;
 }
 
-export function BookshelfView({ onMovieSelect, searchQuery, onViewChange }: BookshelfViewProps) {
+export function BookshelfView({ onMovieSelect, searchQuery, onViewChange, starredIds, toggleStar }: BookshelfViewProps) {
   const [selectedDecade, setSelectedDecade] = useState<string>('All');
   const [selectedRegion, setSelectedRegion] = useState<string>('All');
   const [selectedFormat, setSelectedFormat] = useState<string>('All');
@@ -47,6 +50,10 @@ export function BookshelfView({ onMovieSelect, searchQuery, onViewChange }: Book
     if (selectedRegion !== 'All' && movie.region.toUpperCase() !== selectedRegion.toUpperCase()) {
       return false;
     }
+    // Starred filtering: if any movies are starred, only show them. Otherwise show all.
+    if (starredIds.length > 0 && !starredIds.includes(movie.id)) {
+      return false;
+    }
     return true;
   });
 
@@ -57,7 +64,11 @@ export function BookshelfView({ onMovieSelect, searchQuery, onViewChange }: Book
     <div className="flex flex-col h-[calc(100vh-8rem)] w-full pt-8 overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle at 50% 0%, #1f1f1f 0%, #0a0a0a 70%)', backgroundAttachment: 'fixed' }}>
       <header className="mb-8 max-w-2xl px-margin-page shrink-0">
         <h1 className="archive-header text-5xl md:text-6xl text-white mb-4 tracking-tighter">My Cinematic Space</h1>
-        <p className="text-zinc-400 text-lg leading-relaxed mb-6">Welcome to my personal archive. Browse through the collection like a bookshelf—each frame holds a story, a memory, and a piece of cinematic history.</p>
+        <p className="text-zinc-400 text-lg leading-relaxed mb-6">
+          {starredIds.length > 0 
+            ? "Showing your curated, starred collection. To see all, remove your stars in the grid view."
+            : "Welcome to my personal archive. Browse through the collection like a bookshelf—each frame holds a story, a memory, and a piece of cinematic history."}
+        </p>
       </header>
 
       {/* Interactive Bookshelf / Horizontal Scroll */}
@@ -75,6 +86,12 @@ export function BookshelfView({ onMovieSelect, searchQuery, onViewChange }: Book
             >
               {/* The Frame / Book Cover */}
               <div className="relative h-full aspect-[2/3] bg-zinc-900 border-[8px] md:border-[12px] border-zinc-800 shadow-2xl rounded-sm overflow-hidden z-20 transition-all duration-500 group-hover:-translate-y-4 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+                <button 
+                  onClick={(e) => toggleStar(movie.id, e)} 
+                  className="absolute top-4 right-4 z-30 opacity-0 group-hover:opacity-100 transition-opacity p-2 bg-black/50 rounded-full hover:bg-black/80"
+                >
+                  <Star size={16} className={`${starredIds.includes(movie.id) ? 'fill-yellow-500 text-yellow-500' : 'text-white'}`} />
+                </button>
                 <img 
                   src={movie.thumbnail || "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1925&auto=format&fit=crop"} 
                   alt={movie.title} 

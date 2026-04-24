@@ -1,19 +1,23 @@
 import { movies } from '../data';
 import { motion } from 'motion/react';
 import { useState } from 'react';
+import { Star } from 'lucide-react';
 
 interface LibraryIndexProps {
   onMovieSelect: (id: string) => void;
   searchQuery: string;
   onViewChange: () => void;
+  starredIds: string[];
+  toggleStar: (id: string, e?: React.MouseEvent) => void;
 }
 
-export function LibraryIndex({ onMovieSelect, searchQuery, onViewChange }: LibraryIndexProps) {
+export function LibraryIndex({ onMovieSelect, searchQuery, onViewChange, starredIds, toggleStar }: LibraryIndexProps) {
   const [selectedDecade, setSelectedDecade] = useState<string>('All');
   const [selectedRegion, setSelectedRegion] = useState<string>('All');
   const [selectedFormat, setSelectedFormat] = useState<string>('All');
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const itemsPerPage = 10;
+  const [gridDensity, setGridDensity] = useState<'compact' | 'normal' | 'relaxed'>('normal');
+  const itemsPerPage = 12; // Increase items per page to fill grid better
 
   const filteredMovies = movies.filter(movie => {
     // Search query
@@ -42,12 +46,14 @@ export function LibraryIndex({ onMovieSelect, searchQuery, onViewChange }: Libra
           <h1 className="archive-header text-h1 mb-stack-sm">Library Index</h1>
           <p className="text-body-lg text-secondary">A comprehensive chronological record of cinematic history. Curated metadata for the preservation of movement and sound.</p>
         </div>
-        <button 
-          onClick={onViewChange}
-          className="px-4 py-2 border border-zinc-200 text-black text-sm hover:bg-black hover:text-white transition-colors rounded-sm uppercase tracking-widest font-bold"
-        >
-          ⊞ Switch to Slide View
-        </button>
+        <div className="flex gap-4">
+          <button 
+            onClick={onViewChange}
+            className="px-4 py-2 border border-zinc-200 text-black text-sm hover:bg-black hover:text-white transition-colors rounded-sm uppercase tracking-widest font-bold"
+          >
+            ⊞ Switch to Slide View
+          </button>
+        </div>
       </header>
 
       <div className="flex flex-col md:flex-row gap-gutter-grid">
@@ -87,12 +93,19 @@ export function LibraryIndex({ onMovieSelect, searchQuery, onViewChange }: Libra
 
         {/* Index Grid */}
         <section className="flex-grow pb-stack-xl">
-          <div className="flex justify-between items-end border-b border-zinc-300 pb-4 mb-8">
+          <div className="flex justify-between items-end border-b border-zinc-300 pb-2 mb-8">
             <span className="archive-label text-black">Index</span>
-            <span className="archive-label">{String(filteredMovies.length).padStart(3, '0')} Entries</span>
+            <div className="flex items-center gap-6">
+              <div className="flex gap-2 border border-zinc-200 p-1 rounded-sm">
+                <button onClick={() => setGridDensity('compact')} className={`px-2 py-1 text-[10px] uppercase tracking-widest transition-colors ${gridDensity === 'compact' ? 'bg-black text-white' : 'text-zinc-500 hover:text-black'}`}>Compact</button>
+                <button onClick={() => setGridDensity('normal')} className={`px-2 py-1 text-[10px] uppercase tracking-widest transition-colors ${gridDensity === 'normal' ? 'bg-black text-white' : 'text-zinc-500 hover:text-black'}`}>Normal</button>
+                <button onClick={() => setGridDensity('relaxed')} className={`px-2 py-1 text-[10px] uppercase tracking-widest transition-colors ${gridDensity === 'relaxed' ? 'bg-black text-white' : 'text-zinc-500 hover:text-black'}`}>Relaxed</button>
+              </div>
+              <span className="archive-label uppercase">{String(filteredMovies.length).padStart(3, '0')} Entries</span>
+            </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className={`grid ${gridDensity === 'compact' ? 'grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4' : gridDensity === 'relaxed' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12' : 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8'}`}>
             {currentMovies.map((movie) => (
               <motion.div 
                 key={movie.id}
@@ -103,12 +116,23 @@ export function LibraryIndex({ onMovieSelect, searchQuery, onViewChange }: Libra
                 className="flex flex-col group cursor-pointer"
               >
                 <div className="relative aspect-[3/2] bg-zinc-200 overflow-hidden mb-3">
+                  <button 
+                    onClick={(e) => toggleStar(movie.id, e)}
+                    className="absolute top-2 left-2 z-20 p-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 hover:bg-black/80 rounded-full"
+                  >
+                    <Star size={14} className={`${starredIds.includes(movie.id) ? 'fill-yellow-400 text-yellow-400' : 'text-white'}`} />
+                  </button>
+                  {starredIds.includes(movie.id) && (
+                    <div className="absolute top-2 left-2 z-10 p-2 md:hidden">
+                      <Star size={14} className="fill-yellow-400 text-yellow-400" />
+                    </div>
+                  )}
                   <img 
                     src={movie.thumbnail || "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1925&auto=format&fit=crop"} 
                     alt={movie.title} 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-start justify-end p-3">
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-start justify-end p-3 pointer-events-none">
                     <span className="opacity-0 group-hover:opacity-100 font-mono text-[10px] text-white bg-black/50 px-2 py-1 rounded backdrop-blur-md transition-opacity">
                       {String(Math.floor(Math.random() * 100)).padStart(3, '0')}
                     </span>

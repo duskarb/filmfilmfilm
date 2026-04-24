@@ -1,14 +1,16 @@
 import { motion } from 'motion/react';
-import { Bookmark } from 'lucide-react';
+import { Bookmark, Star } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { movies } from '../data';
 
 interface MovieDetailProps {
   movieId: string | null;
   onMovieSelect: (id: string) => void;
+  starredIds: string[];
+  toggleStar: (id: string, e?: React.MouseEvent) => void;
 }
 
-export function MovieDetail({ movieId, onMovieSelect }: MovieDetailProps) {
+export function MovieDetail({ movieId, onMovieSelect, starredIds, toggleStar }: MovieDetailProps) {
   const movie = movies.find(m => m.id === movieId) || movies[0];
 
   return (
@@ -19,9 +21,14 @@ export function MovieDetail({ movieId, onMovieSelect }: MovieDetailProps) {
         <div className="md:sticky md:top-40 flex flex-col gap-8">
           <div className="flex flex-col gap-2">
             <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-zinc-500">Record {String(Math.floor(Math.random() * 1000)).padStart(4, '0')}</span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] uppercase">
-              {movie?.title}
-            </h1>
+            <div className="flex items-start gap-4">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] uppercase">
+                {movie?.title}
+              </h1>
+              <button onClick={(e) => toggleStar(movie.id, e)} className="hover:opacity-80 transition-opacity mt-2">
+                <Star size={32} className={`${starredIds.includes(movie.id) ? 'fill-yellow-500 text-yellow-500' : 'text-zinc-500 hover:text-white'}`} />
+              </button>
+            </div>
           </div>
           
           <div className="flex flex-col gap-6 border-t border-zinc-200 pt-6">

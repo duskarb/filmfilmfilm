@@ -16,6 +16,23 @@ export default function App() {
   const [selectedMovieId, setSelectedMovieId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+  const [starredIds, setStarredIds] = useState<string[]>(() => {
+    try {
+      const saved = localStorage.getItem('starred_movies');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem('starred_movies', JSON.stringify(starredIds));
+  }, [starredIds]);
+
+  const toggleStar = (id: string, e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    setStarredIds(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
+  };
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -37,11 +54,11 @@ export default function App() {
   const renderPage = () => {
     switch (currentPage) {
       case 'library':
-        return <BookshelfView key="bookshelf" onMovieSelect={handleMovieSelect} searchQuery={searchQuery} onViewChange={() => setCurrentPage('library-grid')} />;
+        return <BookshelfView key="bookshelf" onMovieSelect={handleMovieSelect} searchQuery={searchQuery} onViewChange={() => setCurrentPage('library-grid')} starredIds={starredIds} toggleStar={toggleStar} />;
       case 'library-grid':
-        return <LibraryIndex key="library" onMovieSelect={handleMovieSelect} searchQuery={searchQuery} onViewChange={() => setCurrentPage('library')} />;
+        return <LibraryIndex key="library" onMovieSelect={handleMovieSelect} searchQuery={searchQuery} onViewChange={() => setCurrentPage('library')} starredIds={starredIds} toggleStar={toggleStar} />;
       case 'movie':
-        return <MovieDetail key="movie" movieId={selectedMovieId} onMovieSelect={handleMovieSelect} />;
+        return <MovieDetail key="movie" movieId={selectedMovieId} onMovieSelect={handleMovieSelect} starredIds={starredIds} toggleStar={toggleStar} />;
       case 'sync':
         return <SyncSettings key="sync" />;
       case 'collections':
@@ -54,7 +71,7 @@ export default function App() {
           </div>
         );
       default:
-        return <BookshelfView key="bookshelf" onMovieSelect={handleMovieSelect} searchQuery={searchQuery} onViewChange={() => setCurrentPage('library-grid')} />;
+        return <BookshelfView key="bookshelf" onMovieSelect={handleMovieSelect} searchQuery={searchQuery} onViewChange={() => setCurrentPage('library-grid')} starredIds={starredIds} toggleStar={toggleStar} />;
     }
   };
 
