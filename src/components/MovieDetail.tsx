@@ -15,7 +15,7 @@ export function MovieDetail({ movieId, onMovieSelect, starredIds, toggleStar }: 
 
   return (
     <>
-      <div className="flex flex-col md:flex-row gap-12 pt-8">
+      <div className="flex flex-col md:flex-row gap-12 pt-8 px-margin-page pb-20">
       {/* Left Column: Fixed Meta Info */}
       <aside className="w-full md:w-1/3 flex-shrink-0">
         <div className="md:sticky md:top-40 flex flex-col gap-8">

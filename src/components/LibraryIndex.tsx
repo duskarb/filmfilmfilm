@@ -1,7 +1,7 @@
 import { movies } from '../data';
 import { motion } from 'motion/react';
 import { useState } from 'react';
-import { Star } from 'lucide-react';
+import { Star, LayoutGrid } from 'lucide-react';
 
 interface LibraryIndexProps {
   onMovieSelect: (id: string) => void;
@@ -18,6 +18,12 @@ export function LibraryIndex({ onMovieSelect, searchQuery, onViewChange, starred
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [gridDensity, setGridDensity] = useState<'compact' | 'normal' | 'relaxed'>('normal');
   const itemsPerPage = 12; // Increase items per page to fill grid better
+
+  const cycleGridDensity = () => {
+    if (gridDensity === 'compact') setGridDensity('normal');
+    else if (gridDensity === 'normal') setGridDensity('relaxed');
+    else setGridDensity('compact');
+  };
 
   const filteredMovies = movies.filter(movie => {
     // Search query
@@ -40,7 +46,7 @@ export function LibraryIndex({ onMovieSelect, searchQuery, onViewChange, starred
   const currentMovies = filteredMovies.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col px-margin-page">
       <header className="mb-stack-xl max-w-2xl flex flex-col items-start gap-4">
         <div>
           <h1 className="archive-header text-h1 mb-stack-sm">Library Index</h1>
@@ -96,11 +102,13 @@ export function LibraryIndex({ onMovieSelect, searchQuery, onViewChange, starred
           <div className="flex justify-between items-end border-b border-zinc-300 pb-2 mb-8">
             <span className="archive-label text-black">Index</span>
             <div className="flex items-center gap-6">
-              <div className="flex gap-2 border border-zinc-200 p-1 rounded-sm">
-                <button onClick={() => setGridDensity('compact')} className={`px-2 py-1 text-[10px] uppercase tracking-widest transition-colors ${gridDensity === 'compact' ? 'bg-black text-white' : 'text-zinc-500 hover:text-black'}`}>Compact</button>
-                <button onClick={() => setGridDensity('normal')} className={`px-2 py-1 text-[10px] uppercase tracking-widest transition-colors ${gridDensity === 'normal' ? 'bg-black text-white' : 'text-zinc-500 hover:text-black'}`}>Normal</button>
-                <button onClick={() => setGridDensity('relaxed')} className={`px-2 py-1 text-[10px] uppercase tracking-widest transition-colors ${gridDensity === 'relaxed' ? 'bg-black text-white' : 'text-zinc-500 hover:text-black'}`}>Relaxed</button>
-              </div>
+              <button 
+                onClick={cycleGridDensity} 
+                className="p-1.5 border border-zinc-200 rounded-sm text-zinc-500 hover:text-black hover:bg-zinc-100 transition-colors"
+                title={`Grid density: ${gridDensity}`}
+              >
+                <LayoutGrid size={16} />
+              </button>
               <span className="archive-label uppercase">{String(filteredMovies.length).padStart(3, '0')} Entries</span>
             </div>
           </div>
