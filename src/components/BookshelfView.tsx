@@ -62,7 +62,7 @@ export function BookshelfView({ onMovieSelect, searchQuery, onViewChange }: Book
 
       {/* Interactive Bookshelf / Horizontal Scroll */}
       <div className="flex-grow w-full overflow-hidden relative">
-        <div ref={scrollRef} className="flex gap-12 overflow-x-auto pb-16 pt-8 px-margin-page hide-scrollbar h-full items-center" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <div ref={scrollRef} className="flex gap-6 md:gap-10 overflow-x-auto pb-16 pt-8 px-margin-page hide-scrollbar h-full items-center" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {currentMovies.map((movie) => (
             <motion.div 
               key={movie.id}
@@ -71,11 +71,10 @@ export function BookshelfView({ onMovieSelect, searchQuery, onViewChange }: Book
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.4 }}
               onClick={() => onMovieSelect(movie.id)}
-              className="shrink-0 flex items-center group cursor-pointer h-[80%] min-h-[400px]"
-              style={{ width: 'clamp(280px, 35vw, 420px)' }}
+              className="shrink-0 flex items-center group cursor-pointer h-[75%] min-h-[400px] relative hover:z-50"
             >
               {/* The Frame / Book Cover */}
-              <div className="relative aspect-[2/3] w-full bg-zinc-900 border-[12px] border-zinc-800 shadow-2xl rounded-sm overflow-hidden z-10 transition-all duration-500 group-hover:-translate-y-4 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+              <div className="relative h-full aspect-[2/3] bg-zinc-900 border-[8px] md:border-[12px] border-zinc-800 shadow-2xl rounded-sm overflow-hidden z-20 transition-all duration-500 group-hover:-translate-y-4 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
                 <img 
                   src={movie.thumbnail || "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1925&auto=format&fit=crop"} 
                   alt={movie.title} 
@@ -88,14 +87,16 @@ export function BookshelfView({ onMovieSelect, searchQuery, onViewChange }: Book
               </div>
 
               {/* The Book Page / Slide-out Details */}
-              <div className="hidden md:flex flex-col justify-center bg-zinc-900/90 border border-zinc-800 backdrop-blur-md p-8 shadow-xl -ml-12 pl-16 rounded-r-lg opacity-0 -translate-x-10 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 h-[92%] my-auto max-w-[300px] z-0">
+              <div className="hidden md:flex flex-col justify-center bg-zinc-900/95 border border-zinc-800 backdrop-blur-xl p-8 shadow-2xl rounded-r-lg opacity-0 transition-all duration-500 h-[96%] w-[320px] absolute right-0 top-1/2 -translate-y-1/2 z-10 group-hover:opacity-100 group-hover:translate-x-[95%] group-hover:-translate-y-[55%] pointer-events-none group-hover:pointer-events-auto">
+                <div className="pl-4 border-l border-zinc-700/50 h-full flex flex-col justify-center">
                 <span className="text-xs font-mono tracking-widest text-zinc-500 uppercase mb-4">Director</span>
                 <span className="text-white font-medium text-lg mb-6">{movie.director}</span>
                 <p className="text-zinc-400 text-sm leading-relaxed line-clamp-6">
                   {movie.content?.replace(/[#_*\[\]]/g, '') || "A profound piece of cinema captured in time."}
                 </p>
                 <div className="mt-8">
-                  <span className="text-xs uppercase tracking-widest text-zinc-500 hover:text-white transition-colors border-b border-zinc-700 pb-1">Read Log →</span>
+                  <span className="text-xs uppercase tracking-widest text-zinc-500 hover:text-white transition-colors border-b border-zinc-700 pb-1 w-max cursor-pointer">Read Log →</span>
+                </div>
                 </div>
               </div>
             </motion.div>
@@ -107,10 +108,9 @@ export function BookshelfView({ onMovieSelect, searchQuery, onViewChange }: Book
             animate={{ opacity: 1, scale: 1 }}
             whileHover={{ scale: 1.02 }}
             onClick={onViewChange}
-            className="shrink-0 flex items-center justify-center group cursor-pointer h-[80%] min-h-[400px]"
-            style={{ width: 'clamp(280px, 35vw, 420px)' }}
+            className="shrink-0 flex items-center justify-center group cursor-pointer h-[75%] min-h-[400px] aspect-[2/3]"
           >
-            <div className="relative aspect-[2/3] w-full border-[2px] border-dashed border-zinc-800 hover:border-zinc-500 rounded-sm flex flex-col items-center justify-center text-zinc-500 hover:text-white transition-all duration-300">
+            <div className="relative h-full w-full border-[2px] border-dashed border-zinc-800 hover:border-zinc-500 rounded-sm flex flex-col items-center justify-center text-zinc-500 hover:text-white transition-all duration-300">
               <span className="text-2xl mb-2">⊞</span>
               <h3 className="font-bold text-lg tracking-widest uppercase">View All</h3>
               <span className="text-sm mt-2">Switch to Grid View</span>
