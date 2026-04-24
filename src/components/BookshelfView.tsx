@@ -23,9 +23,9 @@ export function BookshelfView({ onMovieSelect, searchQuery, onViewChange }: Book
 
     const handleWheel = (e: WheelEvent) => {
       // Only trigger if we're scrolling vertically (deltaY)
-      if (e.deltaY !== 0) {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
         e.preventDefault();
-        el.scrollBy({ left: e.deltaY * 0.6, behavior: 'auto' });
+        el.scrollBy({ left: e.deltaY * 0.4, behavior: 'auto' });
       }
     };
 
@@ -54,15 +54,15 @@ export function BookshelfView({ onMovieSelect, searchQuery, onViewChange }: Book
   const currentMovies = filteredMovies.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-8rem)] w-full pt-8" style={{ backgroundImage: 'radial-gradient(circle at 50% 0%, #1f1f1f 0%, #0a0a0a 70%)', backgroundAttachment: 'fixed' }}>
-      <header className="mb-8 max-w-2xl px-margin-page">
+    <div className="flex flex-col h-[calc(100vh-8rem)] w-full pt-8 overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle at 50% 0%, #1f1f1f 0%, #0a0a0a 70%)', backgroundAttachment: 'fixed' }}>
+      <header className="mb-8 max-w-2xl px-margin-page shrink-0">
         <h1 className="archive-header text-5xl md:text-6xl text-white mb-4 tracking-tighter">My Cinematic Space</h1>
         <p className="text-zinc-400 text-lg leading-relaxed mb-6">Welcome to my personal archive. Browse through the collection like a bookshelf—each frame holds a story, a memory, and a piece of cinematic history.</p>
       </header>
 
       {/* Interactive Bookshelf / Horizontal Scroll */}
       <div className="flex-grow w-full overflow-hidden relative">
-        <div ref={scrollRef} className="flex gap-12 overflow-x-auto pb-16 pt-8 px-margin-page snap-x snap-mandatory hide-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <div ref={scrollRef} className="flex gap-12 overflow-x-auto pb-16 pt-8 px-margin-page hide-scrollbar h-full items-center" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {currentMovies.map((movie) => (
             <motion.div 
               key={movie.id}
@@ -71,7 +71,7 @@ export function BookshelfView({ onMovieSelect, searchQuery, onViewChange }: Book
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.4 }}
               onClick={() => onMovieSelect(movie.id)}
-              className="snap-center shrink-0 flex items-center group cursor-pointer h-full"
+              className="shrink-0 flex items-center group cursor-pointer h-[80%] min-h-[400px]"
               style={{ width: 'clamp(280px, 35vw, 420px)' }}
             >
               {/* The Frame / Book Cover */}
@@ -107,7 +107,7 @@ export function BookshelfView({ onMovieSelect, searchQuery, onViewChange }: Book
             animate={{ opacity: 1, scale: 1 }}
             whileHover={{ scale: 1.02 }}
             onClick={onViewChange}
-            className="snap-center shrink-0 flex items-center justify-center group cursor-pointer h-full"
+            className="shrink-0 flex items-center justify-center group cursor-pointer h-[80%] min-h-[400px]"
             style={{ width: 'clamp(280px, 35vw, 420px)' }}
           >
             <div className="relative aspect-[2/3] w-full border-[2px] border-dashed border-zinc-800 hover:border-zinc-500 rounded-sm flex flex-col items-center justify-center text-zinc-500 hover:text-white transition-all duration-300">
