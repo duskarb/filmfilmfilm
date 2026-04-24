@@ -145,7 +145,7 @@ export function MovieDetail({
         {/* Body */}
         <article
           onDoubleClick={editState === "idle" ? enterEdit : undefined}
-          className={`prose prose-zinc dark:prose-invert prose-lg md:prose-xl max-w-none [&_p]:text-black [&_h1]:text-black [&_h2]:text-black [&_h3]:text-black [&_li]:text-black [&_a]:text-black dark:[&_p]:text-zinc-100 dark:[&_h1]:text-zinc-100 dark:[&_h2]:text-zinc-100 dark:[&_h3]:text-zinc-100 dark:[&_li]:text-zinc-100 dark:[&_a]:text-zinc-100 leading-[1.8] font-sans font-normal ${editState === "idle" ? "cursor-text" : ""}`}
+          className={`prose prose-zinc dark:prose-invert prose-lg md:prose-xl max-w-none markdown-content leading-[1.8] font-sans font-normal ${editState === "idle" ? "cursor-text" : ""}`}
         >
           {editState === "idle" ? (
             <>

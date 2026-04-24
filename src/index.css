@@ -89,7 +89,7 @@
   .markdown-content h1,
   .markdown-content h2,
   .markdown-content h3 {
-    @apply font-normal tracking-tight mt-stack-md mb-stack-sm;
+    @apply font-normal tracking-tight mt-stack-md mb-stack-sm text-on-background dark:text-inverse-on-surface;
   }
   .markdown-content h1 {
     @apply text-4xl;
@@ -102,7 +102,12 @@
   }
 
   .markdown-content p {
-    @apply mb-stack-sm text-black dark:text-zinc-100;
+    margin-bottom: var(--spacing-stack-sm);
+    color: var(--color-on-background) !important;
+  }
+
+  .dark .markdown-content p {
+    color: var(--color-inverse-on-surface) !important;
   }
 
   .markdown-content ul {
@@ -111,6 +116,34 @@
 
   .markdown-content ol {
     @apply list-decimal list-inside mb-stack-sm;
+  }
+
+  .markdown-content li {
+    color: var(--color-on-background) !important;
+  }
+
+  .dark .markdown-content li {
+    color: var(--color-inverse-on-surface) !important;
+  }
+
+  .markdown-content a {
+    color: var(--color-on-background) !important;
+  }
+
+  .dark .markdown-content a {
+    color: var(--color-inverse-on-surface) !important;
+  }
+
+  .markdown-content h1,
+  .markdown-content h2,
+  .markdown-content h3 {
+    color: var(--color-on-background) !important;
+  }
+
+  .dark .markdown-content h1,
+  .dark .markdown-content h2,
+  .dark .markdown-content h3 {
+    color: var(--color-inverse-on-surface) !important;
   }
 
   .markdown-content blockquote {
