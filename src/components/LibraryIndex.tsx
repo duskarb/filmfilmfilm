@@ -76,17 +76,14 @@ export function LibraryIndex({ onMovieSelect, searchQuery }: LibraryIndexProps) 
           </div>
         </aside>
 
-        {/* Index Table */}
+        {/* Index Grid */}
         <section className="flex-grow pb-stack-xl">
-          <div className="grid grid-cols-12 gap-gutter-grid border-b border-zinc-100 pb-4 mb-4">
-            <div className="col-span-1 archive-label">Year</div>
-            <div className="col-span-4 archive-label">Title</div>
-            <div className="col-span-3 archive-label">Director</div>
-            <div className="col-span-2 archive-label">Region</div>
-            <div className="col-span-2 archive-label text-right">ID-Ref</div>
+          <div className="flex justify-between items-end border-b border-zinc-300 pb-4 mb-8">
+            <span className="archive-label text-black">Index</span>
+            <span className="archive-label">{String(filteredMovies.length).padStart(3, '0')} Entries</span>
           </div>
           
-          <div className="space-y-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {currentMovies.map((movie) => (
               <motion.div 
                 key={movie.id}
@@ -94,33 +91,45 @@ export function LibraryIndex({ onMovieSelect, searchQuery }: LibraryIndexProps) 
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
                 onClick={() => onMovieSelect(movie.id)}
-                className="grid grid-cols-12 gap-gutter-grid py-3 hover:bg-surface-container-low transition-colors group cursor-pointer"
+                className="flex flex-col group cursor-pointer"
               >
-                <div className="col-span-1 text-[12px] text-primary">{movie.year}</div>
-                <div className="col-span-4 text-body-md text-primary group-hover:underline underline-offset-4">{movie.title}</div>
-                <div className="col-span-3 text-body-md text-secondary">{movie.director}</div>
-                <div className="col-span-2 text-[12px] text-secondary uppercase tracking-widest">{movie.region}</div>
-                <div className="col-span-2 text-[11px] text-zinc-400 text-right">{movie.idRef}</div>
+                <div className="relative aspect-[3/2] bg-zinc-200 overflow-hidden mb-3">
+                  <img 
+                    src={movie.thumbnail || "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1925&auto=format&fit=crop"} 
+                    alt={movie.title} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-start justify-end p-3">
+                    <span className="opacity-0 group-hover:opacity-100 font-mono text-[10px] text-white bg-black/50 px-2 py-1 rounded backdrop-blur-md transition-opacity">
+                      {String(Math.floor(Math.random() * 100)).padStart(3, '0')}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex justify-between items-baseline">
+                  <h3 className="text-body-lg font-bold tracking-tight text-black group-hover:underline underline-offset-4 decoration-2">{movie.title}</h3>
+                  <span className="text-[12px] text-zinc-500 font-medium">{movie.year}</span>
+                </div>
+                <span className="text-[12px] text-zinc-400 mt-1">{movie.director}</span>
               </motion.div>
             ))}
           </div>
 
-          <div className="mt-stack-lg flex justify-between items-center border-t border-zinc-100 pt-stack-sm">
-            <span className="text-[11px] text-secondary">
-              Showing {(currentPage - 1) * itemsPerPage + 1}-{Math.min(currentPage * itemsPerPage, filteredMovies.length)} of {filteredMovies.length} results
+          <div className="mt-16 flex justify-between items-center border-t border-zinc-300 pt-6">
+            <span className="text-[11px] text-zinc-500 font-mono">
+              {String((currentPage - 1) * itemsPerPage + 1).padStart(3, '0')} — {String(Math.min(currentPage * itemsPerPage, filteredMovies.length)).padStart(3, '0')}
             </span>
             <div className="flex gap-10">
               <button 
                 onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
                 disabled={currentPage === 1}
-                className={`text-[12px] uppercase tracking-widest transition-colors ${currentPage === 1 ? 'text-zinc-300 cursor-not-allowed' : 'text-secondary hover:text-primary'}`}
+                className={`text-[12px] uppercase font-bold tracking-widest transition-colors ${currentPage === 1 ? 'text-zinc-300 cursor-not-allowed' : 'text-black hover:text-zinc-500'}`}
               >
                 Prev
               </button>
               <button 
                 onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
                 disabled={currentPage === totalPages || totalPages === 0}
-                className={`text-[12px] uppercase tracking-widest transition-colors ${currentPage === totalPages || totalPages === 0 ? 'text-zinc-300 cursor-not-allowed' : 'text-primary hover:text-black'}`}
+                className={`text-[12px] uppercase font-bold tracking-widest transition-colors ${currentPage === totalPages || totalPages === 0 ? 'text-zinc-300 cursor-not-allowed' : 'text-black hover:text-zinc-500'}`}
               >
                 Next
               </button>
@@ -129,8 +138,7 @@ export function LibraryIndex({ onMovieSelect, searchQuery }: LibraryIndexProps) 
         </section>
       </div>
 
-      {/* Visual Highlights */}
-      <section className="mt-stack-xl mb-stack-xl">
+      <section className="mt-stack-xl mb-stack-xl hidden">
         <h3 className="archive-label uppercase tracking-[0.4em] mb-stack-md">Visual Highlights</h3>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
           <div className="md:col-span-7 aspect-[16/9] bg-zinc-100 overflow-hidden">

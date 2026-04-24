@@ -12,70 +12,65 @@ export function MovieDetail({ movieId, onMovieSelect }: MovieDetailProps) {
   const movie = movies.find(m => m.id === movieId) || movies[0];
 
   return (
-    <div className="flex flex-col items-center">
-      <header className="w-full mb-stack-xl">
-        <div className="flex flex-col gap-stack-xs mb-stack-lg">
-          <span className="archive-label tracking-[0.2em]">Featured Entry</span>
-          <h1 className="archive-header text-[min(120px,15vw)] leading-[0.9] font-light tracking-tighter max-w-4xl lowercase">
-            {movie?.title}
-          </h1>
-          <div className="flex gap-stack-md mt-stack-md">
+    <div className="flex flex-col md:flex-row gap-12 pt-8">
+      {/* Left Column: Fixed Meta Info */}
+      <aside className="w-full md:w-1/3 flex-shrink-0">
+        <div className="md:sticky md:top-40 flex flex-col gap-8">
+          <div className="flex flex-col gap-2">
+            <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-zinc-500">Record {String(Math.floor(Math.random() * 1000)).padStart(4, '0')}</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] uppercase">
+              {movie?.title}
+            </h1>
+          </div>
+          
+          <div className="flex flex-col gap-6 border-t border-zinc-200 pt-6">
             <div className="flex flex-col">
-              <span className="archive-label">Director</span>
-              <span className="text-body-md">{movie?.director}</span>
+              <span className="font-mono text-[10px] tracking-widest uppercase text-zinc-400 mb-1">Director</span>
+              <span className="text-body-lg font-medium">{movie?.director}</span>
             </div>
             <div className="flex flex-col">
-              <span className="archive-label">Year</span>
-              <span className="text-body-md">{movie?.year}</span>
+              <span className="font-mono text-[10px] tracking-widest uppercase text-zinc-400 mb-1">Year</span>
+              <span className="text-body-lg font-medium">{movie?.year}</span>
             </div>
           </div>
-        </div>
 
-        <div className="w-full aspect-[21/9] overflow-hidden bg-zinc-100">
-            <motion.img 
-            key={movie?.id}
-            initial={{ scale: 1.1, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.5, ease: 'easeOut' }}
-            src={movie?.thumbnail || "https://images.unsplash.com/photo-1509333918005-95079a405903?q=80&w=2070&auto=format&fit=crop"} 
-            alt={movie?.title} 
-            className="w-full h-full object-cover grayscale brightness-90 transition-all duration-1000"
-          />
-        </div>
-      </header>
-
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter-grid w-full">
-        <div className="md:col-start-4 md:col-span-6 flex flex-col gap-stack-lg">
-          <div className="flex justify-between items-baseline mb-stack-sm">
-            <h2 className="archive-header text-h3 capitalize tracking-normal">The scale of the frame</h2>
-            <div className="text-h3 font-light tracking-tighter">9.2/10</div>
-          </div>
-
-          <article className="flex flex-col gap-stack-md text-body-lg text-primary leading-relaxed markdown-content">
-            {movie?.content ? (
-              <ReactMarkdown>{movie.content}</ReactMarkdown>
-            ) : (
-              <p className="text-secondary italic">No review content available.</p>
-            )}
-          </article>
-
-          <footer className="mt-stack-lg flex flex-wrap gap-6 items-center border-t border-zinc-100 pt-10">
-            <div className="flex gap-4">
-              <span className="archive-label">Cinema</span>
-              <span className="archive-label">Sci-Fi</span>
-              <span className="archive-label">Epic</span>
-            </div>
-            <div className="flex-grow" />
-            <button onClick={() => alert('Saved to collection!')} className="flex items-center gap-2 group hover:text-black transition-colors text-secondary">
-              <span className="archive-label group-hover:text-black">Save to Collection</span>
+          <div className="border-t border-zinc-200 pt-6 mt-2">
+            <button onClick={() => alert('Saved to collection!')} className="flex items-center gap-2 group hover:text-black transition-colors text-zinc-500 font-bold uppercase tracking-widest text-[12px]">
+              <span className="group-hover:text-black">Save to Collection</span>
               <Bookmark size={14} className="group-hover:fill-current" />
             </button>
-          </footer>
+            <button onClick={() => onMovieSelect('')} className="mt-4 flex items-center gap-2 group hover:text-black transition-colors text-zinc-500 font-bold uppercase tracking-widest text-[12px]">
+              <span className="group-hover:text-black">← Back to Index</span>
+            </button>
+          </div>
         </div>
-      </div>
+      </aside>
 
-      {/* Latest Additions (Grid) */}
-      <section className="w-full mt-stack-xl mb-stack-xl">
+      {/* Right Column: Content & Media */}
+      <main className="w-full md:w-2/3 flex flex-col gap-12 pb-20">
+        <div className="w-full aspect-[16/9] overflow-hidden bg-zinc-200">
+          <motion.img 
+            key={movie?.id}
+            initial={{ scale: 1.05, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            src={movie?.thumbnail || "https://images.unsplash.com/photo-1509333918005-95079a405903?q=80&w=2070&auto=format&fit=crop"} 
+            alt={movie?.title} 
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        <article className="max-w-none text-lg leading-relaxed markdown-content">
+          {movie?.content ? (
+            <ReactMarkdown>{movie.content}</ReactMarkdown>
+          ) : (
+            <p className="text-zinc-500 italic">No review content available.</p>
+          )}
+        </article>
+      </main>
+    </div>
+
+      <section className="w-full mt-24 mb-32 border-t border-zinc-200 pt-16 hidden">
         <div className="flex justify-between items-end mb-stack-md">
           <h2 className="text-h2 tracking-tighter">Latest Additions</h2>
           <button onClick={() => onMovieSelect('')} className="archive-label hover:text-black transition-colors">View All ({movies.length})</button>
