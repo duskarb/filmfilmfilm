@@ -1,0 +1,11 @@
+[
+  { "id": "1", "year": 1972, "title": "Cries and Whispers", "director": "Ingmar Bergman", "region": "SWEDEN", "idRef": "#AR-00912" },
+  { "id": "2", "year": 1973, "title": "The Spirit of the Beehive", "director": "Víctor Erice", "region": "SPAIN", "idRef": "#AR-00924" },
+  { "id": "3", "year": 1975, "title": "Jeanne Dielman, 23 quai du Commerce", "director": "Chantal Akerman", "region": "BELGIUM", "idRef": "#AR-01004" },
+  { "id": "4", "year": 1976, "title": "The Killing of a Chinese Bookie", "director": "John Cassavetes", "region": "USA", "idRef": "#AR-01122" },
+  { "id": "5", "year": 1977, "title": "House (Hausu)", "director": "Nobuhiko Obayashi", "region": "JAPAN", "idRef": "#AR-01289" },
+  { "id": "6", "year": 1978, "title": "Killer of Sheep", "director": "Charles Burnett", "region": "USA", "idRef": "#AR-01311" },
+  { "id": "7", "year": 1979, "title": "Stalker", "director": "Andrei Tarkovsky", "region": "USSR", "idRef": "#AR-01450" },
+  { "id": "8", "year": 1979, "title": "Being There", "director": "Hal Ashby", "region": "USA", "idRef": "#AR-01482" },
+  { "id": "9", "year": 1971, "title": "A Clockwork Orange", "director": "Stanley Kubrick", "region": "UK", "idRef": "#AR-00855" }
+]
