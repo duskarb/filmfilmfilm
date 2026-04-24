@@ -59,12 +59,6 @@ export function BookshelfView({ onMovieSelect, searchQuery }: BookshelfViewProps
       <header className="mb-8 max-w-2xl px-margin-page">
         <h1 className="archive-header text-5xl md:text-6xl text-white mb-4 tracking-tighter">My Cinematic Space</h1>
         <p className="text-zinc-400 text-lg leading-relaxed mb-6">Welcome to my personal archive. Browse through the collection like a bookshelf—each frame holds a story, a memory, and a piece of cinematic history.</p>
-        <button 
-          onClick={onViewChange}
-          className="px-4 py-2 bg-zinc-900 border border-zinc-800 text-zinc-300 text-sm hover:bg-white hover:text-black transition-colors rounded-sm uppercase tracking-widest font-bold"
-        >
-          ⊞ Switch to Grid View
-        </button>
       </header>
 
       {/* Interactive Bookshelf / Horizontal Scroll */}
@@ -107,6 +101,22 @@ export function BookshelfView({ onMovieSelect, searchQuery }: BookshelfViewProps
               </div>
             </motion.div>
           ))}
+          
+          {/* See More / View All Card */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            whileHover={{ scale: 1.02 }}
+            onClick={onViewChange}
+            className="snap-center shrink-0 flex items-center justify-center group cursor-pointer"
+            style={{ width: 'clamp(300px, 40vw, 500px)' }}
+          >
+            <div className="relative aspect-[2/3] w-full border-[2px] border-dashed border-zinc-800 hover:border-zinc-500 rounded-sm flex flex-col items-center justify-center text-zinc-500 hover:text-white transition-all duration-300">
+              <span className="text-2xl mb-2">⊞</span>
+              <h3 className="font-bold text-lg tracking-widest uppercase">View All</h3>
+              <span className="text-sm mt-2">Switch to Grid View</span>
+            </div>
+          </motion.div>
         </div>
       </div>
 

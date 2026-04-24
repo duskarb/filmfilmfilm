@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Navbar, Footer } from './components/Navigation';
 import { LibraryIndex } from './components/LibraryIndex';
 import { BookshelfView } from './components/BookshelfView';
@@ -15,6 +15,19 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState('library');
   const [selectedMovieId, setSelectedMovieId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
 
   const handleMovieSelect = (id: string) => {
     setSelectedMovieId(id);
@@ -46,10 +59,10 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col pt-32">
-      <Navbar currentPage={currentPage} onPageChange={setCurrentPage} onSearch={setSearchQuery} />
+    <div className={`min-h-screen flex flex-col pt-32 transition-colors duration-500 dark:bg-[#0a0a0a] dark:text-zinc-300`}>
+      <Navbar currentPage={currentPage} onPageChange={setCurrentPage} onSearch={setSearchQuery} theme={theme} toggleTheme={toggleTheme} />
       
-      <main className="flex-grow px-margin-page pb-20">
+      <main className="flex-grow w-full">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentPage}
@@ -65,7 +78,7 @@ export default function App() {
         </AnimatePresence>
       </main>
 
-      <Footer />
+      <Footer theme={theme} />
     </div>
   );
 }

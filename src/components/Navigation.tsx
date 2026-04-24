@@ -1,13 +1,15 @@
-import { Search } from 'lucide-react';
+import { Search, Sun, Moon } from 'lucide-react';
 
 interface NavbarProps {
   currentPage: string;
   onPageChange: (page: string) => void;
   onSearch: (query: string) => void;
+  theme: 'light' | 'dark';
+  toggleTheme: () => void;
 }
 
-export function Navbar({ currentPage, onPageChange, onSearch }: NavbarProps) {
-  const isDark = currentPage === 'library' || currentPage === 'movie';
+export function Navbar({ currentPage, onPageChange, onSearch, theme, toggleTheme }: NavbarProps) {
+  const isDark = theme === 'dark';
 
   return (
     <nav className={`fixed top-0 w-full z-50 px-margin-page py-10 flex justify-between items-center backdrop-blur-md border-b transition-colors duration-500 ${isDark ? 'bg-[#0a0a0a]/80 text-zinc-300 border-zinc-900/50' : 'bg-white/80 border-zinc-100 text-black'}`}>
@@ -34,6 +36,9 @@ export function Navbar({ currentPage, onPageChange, onSearch }: NavbarProps) {
       </div>
 
       <div className="flex items-center gap-8">
+        <button onClick={toggleTheme} className="hover:opacity-70 transition-opacity">
+          {isDark ? <Sun size={16} /> : <Moon size={16} />}
+        </button>
         <div className="hidden lg:block relative">
           <input 
             type="text" 
@@ -54,25 +59,26 @@ export function Navbar({ currentPage, onPageChange, onSearch }: NavbarProps) {
   );
 }
 
-export function Footer() {
+export function Footer({ theme }: { theme?: 'light' | 'dark' }) {
+  const isDark = theme === 'dark';
   return (
-    <footer className="grid grid-cols-2 md:grid-cols-4 gap-12 w-full px-margin-page py-20 border-t border-zinc-100 bg-white font-sans text-[10px] uppercase tracking-[0.2em] text-zinc-400 mt-auto">
+    <footer className={`grid grid-cols-2 md:grid-cols-4 gap-12 w-full px-margin-page py-20 border-t transition-colors duration-500 font-sans text-[10px] uppercase tracking-[0.2em] mt-auto ${isDark ? 'border-zinc-900 bg-[#0a0a0a] text-zinc-600' : 'border-zinc-100 bg-white text-zinc-400'}`}>
       <div className="flex flex-col gap-4">
-        <span className="text-black font-semibold">The Archive</span>
-        <p className="normal-case tracking-normal">© 2024 The Archive. Built for the cinematic record.</p>
+        <span className={`font-semibold ${isDark ? 'text-zinc-400' : 'text-black'}`}>Subeen's Archive</span>
+        <p className="normal-case tracking-normal">© 2024 Subeen's Cinematic Space. Written with love.</p>
       </div>
       <div className="flex flex-col gap-2">
-        <a className="hover:text-black transition-colors" href="#">Terms</a>
-        <a className="hover:text-black transition-colors" href="#">Privacy</a>
+        <a className={`transition-colors ${isDark ? 'hover:text-white' : 'hover:text-black'}`} href="#">Terms</a>
+        <a className={`transition-colors ${isDark ? 'hover:text-white' : 'hover:text-black'}`} href="#">Privacy</a>
       </div>
       <div className="flex flex-col gap-2">
-        <a className="hover:text-black transition-colors" href="#">API</a>
-        <a className="hover:text-black transition-colors" href="#">Journal</a>
+        <a className={`transition-colors ${isDark ? 'hover:text-white' : 'hover:text-black'}`} href="#">API</a>
+        <a className={`transition-colors ${isDark ? 'hover:text-white' : 'hover:text-black'}`} href="#">Journal</a>
       </div>
       <div className="flex flex-col gap-2">
-        <span className="text-black">Social</span>
-        <a className="hover:text-black transition-colors" href="#">Instagram</a>
-        <a className="hover:text-black transition-colors" href="#">Letterboxd</a>
+        <span className={isDark ? 'text-zinc-400' : 'text-black'}>Social</span>
+        <a className={`transition-colors ${isDark ? 'hover:text-white' : 'hover:text-black'}`} href="#">Instagram</a>
+        <a className={`transition-colors ${isDark ? 'hover:text-white' : 'hover:text-black'}`} href="#">Letterboxd</a>
       </div>
     </footer>
   );
