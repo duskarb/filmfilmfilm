@@ -25,8 +25,8 @@ export function MovieDetail({ movieId, onMovieSelect, starredIds, toggleStar }: 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] uppercase">
                 {movie?.title}
               </h1>
-              <button onClick={(e) => toggleStar(movie.id, e)} className="hover:opacity-80 transition-opacity mt-2">
-                <Star size={32} className={`${starredIds.includes(movie.id) ? 'fill-yellow-500 text-yellow-500' : 'text-zinc-500 hover:text-white'}`} />
+              <button onClick={(e) => toggleStar(movie.id, e)} className="hover:scale-110 transition-transform mt-2">
+                <Star size={32} strokeWidth={1.5} className={`transition-colors ${starredIds.includes(movie.id) ? 'fill-yellow-400 text-yellow-400' : 'fill-transparent text-zinc-500 hover:text-zinc-300'}`} />
               </button>
             </div>
           </div>

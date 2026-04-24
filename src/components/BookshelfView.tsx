@@ -85,12 +85,12 @@ export function BookshelfView({ onMovieSelect, searchQuery, onViewChange, starre
               className="shrink-0 flex items-center group cursor-pointer h-[85%] max-h-[750px] relative hover:z-50"
             >
               {/* The Frame / Book Cover */}
-              <div className="relative h-full aspect-[2/3] bg-zinc-900 border-[8px] md:border-[12px] border-zinc-800 shadow-2xl rounded-sm overflow-hidden z-20 transition-all duration-500 group-hover:-translate-y-4 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+              <div className="relative h-full aspect-[2/3] bg-zinc-900 shadow-2xl rounded-sm overflow-hidden z-20 transition-all duration-500 group-hover:-translate-y-4 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
                 <button 
                   onClick={(e) => toggleStar(movie.id, e)} 
-                  className="absolute top-4 right-4 z-30 opacity-0 group-hover:opacity-100 transition-opacity p-2 bg-black/50 rounded-full hover:bg-black/80"
+                  className="absolute top-4 right-4 z-30 opacity-0 group-hover:opacity-100 transition-all p-2 drop-shadow-md hover:scale-110"
                 >
-                  <Star size={16} className={`${starredIds.includes(movie.id) ? 'fill-yellow-500 text-yellow-500' : 'text-white'}`} />
+                  <Star size={24} strokeWidth={1.5} className={`transition-colors ${starredIds.includes(movie.id) ? 'fill-yellow-400 text-yellow-400' : 'fill-transparent text-white/80 hover:text-white'}`} />
                 </button>
                 <img 
                   src={movie.thumbnail || "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1925&auto=format&fit=crop"} 

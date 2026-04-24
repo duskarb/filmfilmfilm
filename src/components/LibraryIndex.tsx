@@ -131,13 +131,13 @@ export function LibraryIndex({ onMovieSelect, searchQuery, onViewChange, starred
                 <div className="relative aspect-[3/2] bg-zinc-200 overflow-hidden mb-3">
                   <button 
                     onClick={(e) => toggleStar(movie.id, e)}
-                    className="absolute top-2 left-2 z-20 p-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 hover:bg-black/80 rounded-full"
+                    className="absolute top-2 left-2 z-20 p-2 opacity-0 group-hover:opacity-100 transition-all drop-shadow-md hover:scale-110"
                   >
-                    <Star size={14} className={`${starredIds.includes(movie.id) ? 'fill-yellow-400 text-yellow-400' : 'text-white'}`} />
+                    <Star size={18} strokeWidth={1.5} className={`transition-colors ${starredIds.includes(movie.id) ? 'fill-yellow-400 text-yellow-400' : 'fill-transparent text-white/80 hover:text-white'}`} />
                   </button>
                   {starredIds.includes(movie.id) && (
-                    <div className="absolute top-2 left-2 z-10 p-2 md:hidden">
-                      <Star size={14} className="fill-yellow-400 text-yellow-400" />
+                    <div className="absolute top-2 left-2 z-10 p-2 md:hidden drop-shadow-md">
+                      <Star size={18} strokeWidth={1.5} className="fill-yellow-400 text-yellow-400" />
                     </div>
                   )}
                   <img 
