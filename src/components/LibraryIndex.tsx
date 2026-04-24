@@ -17,12 +17,16 @@ export function LibraryIndex({ onMovieSelect, searchQuery, onViewChange, starred
   const [selectedFormat, setSelectedFormat] = useState<string>('All');
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [gridDensity, setGridDensity] = useState<'compact' | 'normal' | 'relaxed'>('normal');
-  const itemsPerPage = 12; // Increase items per page to fill grid better
+  
+  const itemsPerPage = gridDensity === 'compact' ? 20 : gridDensity === 'relaxed' ? 8 : 12;
 
   const cycleGridDensity = () => {
-    if (gridDensity === 'compact') setGridDensity('normal');
-    else if (gridDensity === 'normal') setGridDensity('relaxed');
-    else setGridDensity('compact');
+    setGridDensity(prev => {
+      if (prev === 'compact') return 'normal';
+      if (prev === 'normal') return 'relaxed';
+      return 'compact';
+    });
+    setCurrentPage(1);
   };
 
   const filteredMovies = movies.filter(movie => {
@@ -43,7 +47,8 @@ export function LibraryIndex({ onMovieSelect, searchQuery, onViewChange, starred
   });
 
   const totalPages = Math.ceil(filteredMovies.length / itemsPerPage);
-  const currentMovies = filteredMovies.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const validCurrentPage = Math.min(currentPage, Math.max(1, totalPages));
+  const currentMovies = filteredMovies.slice((validCurrentPage - 1) * itemsPerPage, validCurrentPage * itemsPerPage);
 
   return (
     <div className="flex flex-col px-margin-page">
@@ -157,20 +162,20 @@ export function LibraryIndex({ onMovieSelect, searchQuery, onViewChange, starred
 
           <div className="mt-16 flex justify-between items-center border-t border-zinc-300 pt-6">
             <span className="text-[11px] text-zinc-500 font-mono">
-              {String((currentPage - 1) * itemsPerPage + 1).padStart(3, '0')} — {String(Math.min(currentPage * itemsPerPage, filteredMovies.length)).padStart(3, '0')}
+              {String((validCurrentPage - 1) * itemsPerPage + 1).padStart(3, '0')} — {String(Math.min(validCurrentPage * itemsPerPage, filteredMovies.length)).padStart(3, '0')}
             </span>
             <div className="flex gap-10">
               <button 
                 onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-                disabled={currentPage === 1}
-                className={`text-[12px] uppercase font-bold tracking-widest transition-colors ${currentPage === 1 ? 'text-zinc-300 cursor-not-allowed' : 'text-black hover:text-zinc-500'}`}
+                disabled={validCurrentPage === 1}
+                className={`text-[12px] uppercase font-bold tracking-widest transition-colors ${validCurrentPage === 1 ? 'text-zinc-300 cursor-not-allowed' : 'text-black hover:text-zinc-500'}`}
               >
                 Prev
               </button>
               <button 
                 onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-                disabled={currentPage === totalPages || totalPages === 0}
-                className={`text-[12px] uppercase font-bold tracking-widest transition-colors ${currentPage === totalPages || totalPages === 0 ? 'text-zinc-300 cursor-not-allowed' : 'text-black hover:text-zinc-500'}`}
+                disabled={validCurrentPage === totalPages || totalPages === 0}
+                className={`text-[12px] uppercase font-bold tracking-widest transition-colors ${validCurrentPage === totalPages || totalPages === 0 ? 'text-zinc-300 cursor-not-allowed' : 'text-black hover:text-zinc-500'}`}
               >
                 Next
               </button>
