@@ -3,6 +3,7 @@ import { Search } from 'lucide-react';
 interface NavbarProps {
   currentPage: string;
   onPageChange: (page: string) => void;
+  onSearch: (query: string) => void;
 }
 
 export function Navbar({ currentPage, onPageChange }: NavbarProps) {
@@ -22,9 +23,24 @@ export function Navbar({ currentPage, onPageChange }: NavbarProps) {
         >
           Library
         </button>
-        <button className="text-secondary hover:text-black transition-colors">Collections</button>
-        <button className="text-secondary hover:text-black transition-colors">Directors</button>
-        <button className="text-secondary hover:text-black transition-colors">Log</button>
+        <button 
+          onClick={() => onPageChange('collections')}
+          className={`${currentPage === 'collections' ? 'text-black underline underline-offset-8' : 'text-secondary'} hover:text-black transition-colors`}
+        >
+          Collections
+        </button>
+        <button 
+          onClick={() => onPageChange('directors')}
+          className={`${currentPage === 'directors' ? 'text-black underline underline-offset-8' : 'text-secondary'} hover:text-black transition-colors`}
+        >
+          Directors
+        </button>
+        <button 
+          onClick={() => onPageChange('log')}
+          className={`${currentPage === 'log' ? 'text-black underline underline-offset-8' : 'text-secondary'} hover:text-black transition-colors`}
+        >
+          Log
+        </button>
       </div>
 
       <div className="flex items-center gap-8">
@@ -32,9 +48,10 @@ export function Navbar({ currentPage, onPageChange }: NavbarProps) {
           <input 
             type="text" 
             placeholder="Search the record..." 
+            onChange={(e) => onSearch(e.target.value)}
             className="border-b border-zinc-200 bg-transparent py-1 text-[12px] focus:outline-none focus:border-black transition-all w-48"
           />
-          <Search size={14} className="absolute right-0 top-2 text-zinc-400" />
+          <Search size={14} className="absolute right-0 top-2 text-zinc-400 pointer-events-none" />
         </div>
         <button 
           onClick={() => onPageChange('sync')}

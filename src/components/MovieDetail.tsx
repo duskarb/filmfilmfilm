@@ -66,7 +66,7 @@ export function MovieDetail({ movieId, onMovieSelect }: MovieDetailProps) {
               <span className="archive-label">Epic</span>
             </div>
             <div className="flex-grow" />
-            <button className="flex items-center gap-2 group hover:text-black transition-colors text-secondary">
+            <button onClick={() => alert('Saved to collection!')} className="flex items-center gap-2 group hover:text-black transition-colors text-secondary">
               <span className="archive-label group-hover:text-black">Save to Collection</span>
               <Bookmark size={14} className="group-hover:fill-current" />
             </button>
@@ -78,7 +78,7 @@ export function MovieDetail({ movieId, onMovieSelect }: MovieDetailProps) {
       <section className="w-full mt-stack-xl mb-stack-xl">
         <div className="flex justify-between items-end mb-stack-md">
           <h2 className="text-h2 tracking-tighter">Latest Additions</h2>
-          <button className="archive-label hover:text-black transition-colors">View All (428)</button>
+          <button onClick={() => onMovieSelect('')} className="archive-label hover:text-black transition-colors">View All ({movies.length})</button>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-gutter-grid">
           {movies.slice(0, 3).map((m) => (

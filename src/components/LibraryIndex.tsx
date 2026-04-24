@@ -4,16 +4,35 @@ import { useState } from 'react';
 
 interface LibraryIndexProps {
   onMovieSelect: (id: string) => void;
+  searchQuery: string;
 }
 
-export function LibraryIndex({ onMovieSelect }: LibraryIndexProps) {
+export function LibraryIndex({ onMovieSelect, searchQuery }: LibraryIndexProps) {
   const [selectedDecade, setSelectedDecade] = useState<string>('All');
+  const [selectedRegion, setSelectedRegion] = useState<string>('All');
+  const [selectedFormat, setSelectedFormat] = useState<string>('All');
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const itemsPerPage = 10;
 
   const filteredMovies = movies.filter(movie => {
-    if (selectedDecade === 'All') return true;
-    const decadeStart = parseInt(selectedDecade.substring(0, 4), 10);
-    return movie.year >= decadeStart && movie.year < decadeStart + 10;
+    // Search query
+    if (searchQuery && !movie.title.toLowerCase().includes(searchQuery.toLowerCase()) && !movie.director.toLowerCase().includes(searchQuery.toLowerCase())) {
+      return false;
+    }
+    // Decade
+    if (selectedDecade !== 'All') {
+      const decadeStart = parseInt(selectedDecade.substring(0, 4), 10);
+      if (movie.year < decadeStart || movie.year >= decadeStart + 10) return false;
+    }
+    // Region
+    if (selectedRegion !== 'All' && movie.region.toUpperCase() !== selectedRegion.toUpperCase()) {
+      return false;
+    }
+    return true;
   });
+
+  const totalPages = Math.ceil(filteredMovies.length / itemsPerPage);
+  const currentMovies = filteredMovies.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
     <div className="flex flex-col">
@@ -29,10 +48,10 @@ export function LibraryIndex({ onMovieSelect }: LibraryIndexProps) {
             <section>
               <h4 className="archive-label mb-stack-xs uppercase">Format</h4>
               <ul className="space-y-1">
-                <li><button className="text-[12px] text-primary">All Objects</button></li>
-                <li><button className="text-[12px] text-secondary hover:text-primary transition-colors">35mm Negative</button></li>
-                <li><button className="text-[12px] text-secondary hover:text-primary transition-colors">Digital Interm.</button></li>
-                <li><button className="text-[12px] text-secondary hover:text-primary transition-colors">70mm Print</button></li>
+                <li><button onClick={() => setSelectedFormat('All')} className={`text-[12px] transition-colors ${selectedFormat === 'All' ? 'text-primary' : 'text-secondary hover:text-primary'}`}>All Objects</button></li>
+                <li><button onClick={() => setSelectedFormat('35mm')} className={`text-[12px] transition-colors ${selectedFormat === '35mm' ? 'text-primary' : 'text-secondary hover:text-primary'}`}>35mm Negative</button></li>
+                <li><button onClick={() => setSelectedFormat('Digital')} className={`text-[12px] transition-colors ${selectedFormat === 'Digital' ? 'text-primary' : 'text-secondary hover:text-primary'}`}>Digital Interm.</button></li>
+                <li><button onClick={() => setSelectedFormat('70mm')} className={`text-[12px] transition-colors ${selectedFormat === '70mm' ? 'text-primary' : 'text-secondary hover:text-primary'}`}>70mm Print</button></li>
               </ul>
             </section>
             <section>
@@ -48,9 +67,10 @@ export function LibraryIndex({ onMovieSelect }: LibraryIndexProps) {
             <section>
               <h4 className="archive-label mb-stack-xs uppercase">Region</h4>
               <ul className="space-y-1">
-                <li><button className="text-[12px] text-secondary hover:text-primary transition-colors">Asia-Pacific</button></li>
-                <li><button className="text-[12px] text-primary">Europe</button></li>
-                <li><button className="text-[12px] text-secondary hover:text-primary transition-colors">Americas</button></li>
+                <li><button onClick={() => setSelectedRegion('All')} className={`text-[12px] transition-colors ${selectedRegion === 'All' ? 'text-primary' : 'text-secondary hover:text-primary'}`}>All Regions</button></li>
+                <li><button onClick={() => setSelectedRegion('Asia')} className={`text-[12px] transition-colors ${selectedRegion === 'Asia' ? 'text-primary' : 'text-secondary hover:text-primary'}`}>Asia-Pacific</button></li>
+                <li><button onClick={() => setSelectedRegion('Europe')} className={`text-[12px] transition-colors ${selectedRegion === 'Europe' ? 'text-primary' : 'text-secondary hover:text-primary'}`}>Europe</button></li>
+                <li><button onClick={() => setSelectedRegion('America')} className={`text-[12px] transition-colors ${selectedRegion === 'America' ? 'text-primary' : 'text-secondary hover:text-primary'}`}>Americas</button></li>
               </ul>
             </section>
           </div>
@@ -67,7 +87,7 @@ export function LibraryIndex({ onMovieSelect }: LibraryIndexProps) {
           </div>
           
           <div className="space-y-0">
-            {filteredMovies.map((movie) => (
+            {currentMovies.map((movie) => (
               <motion.div 
                 key={movie.id}
                 initial={{ opacity: 0, y: 10 }}
@@ -86,10 +106,24 @@ export function LibraryIndex({ onMovieSelect }: LibraryIndexProps) {
           </div>
 
           <div className="mt-stack-lg flex justify-between items-center border-t border-zinc-100 pt-stack-sm">
-            <span className="text-[11px] text-secondary">Showing {filteredMovies.length} results</span>
+            <span className="text-[11px] text-secondary">
+              Showing {(currentPage - 1) * itemsPerPage + 1}-{Math.min(currentPage * itemsPerPage, filteredMovies.length)} of {filteredMovies.length} results
+            </span>
             <div className="flex gap-10">
-              <button className="text-[12px] text-secondary hover:text-primary uppercase tracking-widest transition-colors">Prev</button>
-              <button className="text-[12px] text-primary uppercase tracking-widest transition-colors">Next</button>
+              <button 
+                onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                disabled={currentPage === 1}
+                className={`text-[12px] uppercase tracking-widest transition-colors ${currentPage === 1 ? 'text-zinc-300 cursor-not-allowed' : 'text-secondary hover:text-primary'}`}
+              >
+                Prev
+              </button>
+              <button 
+                onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                disabled={currentPage === totalPages || totalPages === 0}
+                className={`text-[12px] uppercase tracking-widest transition-colors ${currentPage === totalPages || totalPages === 0 ? 'text-zinc-300 cursor-not-allowed' : 'text-primary hover:text-black'}`}
+              >
+                Next
+              </button>
             </div>
           </div>
         </section>

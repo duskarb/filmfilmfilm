@@ -13,6 +13,7 @@ import { motion, AnimatePresence } from 'motion/react';
 export default function App() {
   const [currentPage, setCurrentPage] = useState('library');
   const [selectedMovieId, setSelectedMovieId] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleMovieSelect = (id: string) => {
     setSelectedMovieId(id);
@@ -22,19 +23,28 @@ export default function App() {
   const renderPage = () => {
     switch (currentPage) {
       case 'library':
-        return <LibraryIndex key="library" onMovieSelect={handleMovieSelect} />;
+        return <LibraryIndex key="library" onMovieSelect={handleMovieSelect} searchQuery={searchQuery} />;
       case 'movie':
         return <MovieDetail key="movie" movieId={selectedMovieId} onMovieSelect={handleMovieSelect} />;
       case 'sync':
         return <SyncSettings key="sync" />;
+      case 'collections':
+      case 'directors':
+      case 'log':
+        return (
+          <div key="placeholder" className="flex flex-col items-center justify-center min-h-[50vh] text-center">
+            <h1 className="text-h1 mb-stack-sm capitalize archive-header">{currentPage}</h1>
+            <p className="text-secondary text-body-lg">This section is currently under construction. Please check back later.</p>
+          </div>
+        );
       default:
-        return <LibraryIndex key="library" onMovieSelect={handleMovieSelect} />;
+        return <LibraryIndex key="library" onMovieSelect={handleMovieSelect} searchQuery={searchQuery} />;
     }
   };
 
   return (
     <div className="min-h-screen flex flex-col pt-32">
-      <Navbar currentPage={currentPage} onPageChange={setCurrentPage} />
+      <Navbar currentPage={currentPage} onPageChange={setCurrentPage} onSearch={setSearchQuery} />
       
       <main className="flex-grow px-margin-page pb-20">
         <AnimatePresence mode="wait">
