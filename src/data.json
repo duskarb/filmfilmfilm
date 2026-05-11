@@ -1,25 +1,5 @@
 [
   {
-    "id": "33f9e743-cbe4-8000-9d2e-f9bc0f3c0df3",
-    "title": "Dune: Part Two",
-    "year": 2024,
-    "director": "Denis Villeneuve",
-    "region": "UNKNOWN",
-    "idRef": "#AR-33F9E",
-    "thumbnail": "https://i.namu.wiki/i/3PAFkuVUWg9UA7VZrxQaFGecgI99WFMA3GmILqPU7BCOifIxmo6tN3T276DMSiYZ6eqKdUr1wjTnKrWzbo8_jg.webp",
-    "content": "## 난 듄은 재미없더라\n\n김수빈, 윤소예 왜 환장함?\n어이없다\n\n"
-  },
-  {
-    "id": "33f9e743-cbe4-8101-9720-cf398267ba92",
-    "title": "토탈리콜",
-    "year": 1990,
-    "director": "Paul Verhoeven",
-    "region": "UNKNOWN",
-    "idRef": "#AR-33F9E",
-    "thumbnail": "https://image.tmdb.org/t/p/w500/q7uUVw1ryWoYgEKLo3MDBQbctw6.jpg",
-    "content": "테세우스의 배 역설의 영화적 구현. 기억이 조작된 주인공이 '진짜 나'를 찾아가는 과정. 기억 = 정체성이라면, 조작된 기억도 유효한 자아인가?"
-  },
-  {
     "id": "33f9e743-cbe4-8102-bafa-d03dbdfd579e",
     "title": "인간수업",
     "year": 2020,
@@ -28,16 +8,6 @@
     "idRef": "#AR-33F9E",
     "thumbnail": "https://image.tmdb.org/t/p/w500/2LTSggPYwuLvekQgvQfJ310auvP.jpg",
     "content": "성실한 고등학생이 학비를 벌기 위해 범죄에 뛰어드는 넷플릭스 한국 드라마. 도덕의 회색지대에서 살아남으려는 청소년의 이야기."
-  },
-  {
-    "id": "33f9e743-cbe4-8107-8bae-f7aea7028bf3",
-    "title": "건축학개론",
-    "year": 2012,
-    "director": "이용주",
-    "region": "UNKNOWN",
-    "idRef": "#AR-33F9E",
-    "thumbnail": "https://image.tmdb.org/t/p/w500/6ChBkMt5fwYPtKvbtq8irLfuKHc.jpg",
-    "content": "사랑도 인생도 리셋과 신축은 어렵다. 과거를 안고 증축할 뿐. 건축의 증축 메타포로 인생과 사랑의 축적성을 말한다. 과거의 기억이 현재의 나를 규정한다는 비가역성의 일상적 표현."
   },
   {
     "id": "33f9e743-cbe4-8107-99f3-f47a1bbc01dd",
@@ -210,16 +180,6 @@
     "content": "시간 여행으로 과거의 자신을 만나 사랑을 구하려는 판타지 로맨스. 기억과 선택, 비가역적 시간에 대한 질문. 프랑스 원작 소설을 한국 배경으로 재해석."
   },
   {
-    "id": "33f9e743-cbe4-81a9-b7f7-db4138ed6d12",
-    "title": "A.I. Artificial Intelligence",
-    "year": 2001,
-    "director": "Steven Spielberg",
-    "region": "UNKNOWN",
-    "idRef": "#AR-33F9E",
-    "thumbnail": "https://image.tmdb.org/t/p/w500/v5URBLEZCtICf0DsnEztdrAs4dD.jpg",
-    "content": "감정을 가진 로봇 소년 David의 이야기. 감정을 느끼는 AI는 인간인가? 포스트휴머니즘의 핵심 질문 — '감정을 가진 존재는 무엇으로 정의되는가'를 정면으로 제기한다."
-  },
-  {
     "id": "33f9e743-cbe4-81ae-9286-c74765101c63",
     "title": "메가마인드",
     "year": 2010,
@@ -250,6 +210,46 @@
     "content": "교외 중산층 가정의 공허함을 해부한 영화. 레스터 번햄의 중년의 각성. '세계 > 인간'이 아닌 좁은 세계 안에서 인물의 내면이 무한히 깊어지는 서사. 검정치마의 Lester Burnham도 이 영화에서 왔다."
   },
   {
+    "id": "33f9e743-cbe4-81e1-9485-f71a49e2bbd3",
+    "title": "가위손",
+    "year": 1990,
+    "director": "Tim Burton",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/ePuSSqXxLuOR7cQz70QsGlx3wsy.jpg",
+    "content": "가위손이라는 신체적 결함이 사회에서의 이방인성을 상징한다. 아웃사이더에 대한 공감과 사회의 편견. 팀 버튼의 자전적 감성이 가장 짙게 담긴 작품."
+  },
+  {
+    "id": "33f9e743-cbe4-8101-9720-cf398267ba92",
+    "title": "토탈리콜",
+    "year": 1990,
+    "director": "Paul Verhoeven",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/q7uUVw1ryWoYgEKLo3MDBQbctw6.jpg",
+    "content": "테세우스의 배 역설의 영화적 구현. 기억이 조작된 주인공이 '진짜 나'를 찾아가는 과정. 기억 = 정체성이라면, 조작된 기억도 유효한 자아인가?"
+  },
+  {
+    "id": "33f9e743-cbe4-8107-8bae-f7aea7028bf3",
+    "title": "건축학개론",
+    "year": 2012,
+    "director": "이용주",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/6ChBkMt5fwYPtKvbtq8irLfuKHc.jpg",
+    "content": "사랑도 인생도 리셋과 신축은 어렵다. 과거를 안고 증축할 뿐. 건축의 증축 메타포로 인생과 사랑의 축적성을 말한다. 과거의 기억이 현재의 나를 규정한다는 비가역성의 일상적 표현."
+  },
+  {
+    "id": "33f9e743-cbe4-81a9-b7f7-db4138ed6d12",
+    "title": "A.I. Artificial Intelligence",
+    "year": 2001,
+    "director": "Steven Spielberg",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://image.tmdb.org/t/p/w500/v5URBLEZCtICf0DsnEztdrAs4dD.jpg",
+    "content": "감정을 가진 로봇 소년 David의 이야기. 감정을 느끼는 AI는 인간인가? 포스트휴머니즘의 핵심 질문 — '감정을 가진 존재는 무엇으로 정의되는가'를 정면으로 제기한다."
+  },
+  {
     "id": "33f9e743-cbe4-81d7-b8bc-f612ed2fa677",
     "title": "인셉션",
     "year": 2010,
@@ -270,16 +270,6 @@
     "content": "사이버네틱 신체에서 '나'란 무엇인가. 고스트(영혼)의 존재 여부를 질문한다. AI와 인간이 공존하는 사회의 조건과 갈등. 기술이 편의와 자유를 동시에 제공하면서 둘 다를 위협한다."
   },
   {
-    "id": "33f9e743-cbe4-81e1-9485-f71a49e2bbd3",
-    "title": "가위손",
-    "year": 1990,
-    "director": "Tim Burton",
-    "region": "UNKNOWN",
-    "idRef": "#AR-33F9E",
-    "thumbnail": "https://image.tmdb.org/t/p/w500/ePuSSqXxLuOR7cQz70QsGlx3wsy.jpg",
-    "content": "가위손이라는 신체적 결함이 사회에서의 이방인성을 상징한다. 아웃사이더에 대한 공감과 사회의 편견. 팀 버튼의 자전적 감성이 가장 짙게 담긴 작품."
-  },
-  {
     "id": "33f9e743-cbe4-81ef-9490-d6845e995178",
     "title": "이터널 선샤인",
     "year": 2004,
@@ -298,5 +288,15 @@
     "idRef": "#AR-33F9E",
     "thumbnail": "https://image.tmdb.org/t/p/w500/6yXqNiVIoJcMhio10Nkb5QMNeh8.jpg",
     "content": "레플리컨트에 대한 차별을 통해 '인간이란 무엇인가'를 질문. 인간성의 기준이 자의적임을 드러낸다. 기술이 편의를 제공하면서 동시에 자유와 사생활을 침해하는 이중성. 데카드의 도덕적 딜레마 — 레플리컨트를 '은퇴'시키는 행위의 윤리성."
+  },
+  {
+    "id": "33f9e743-cbe4-8000-9d2e-f9bc0f3c0df3",
+    "title": "Dune: Part Two",
+    "year": 2024,
+    "director": "Denis Villeneuve",
+    "region": "UNKNOWN",
+    "idRef": "#AR-33F9E",
+    "thumbnail": "https://i.namu.wiki/i/3PAFkuVUWg9UA7VZrxQaFGecgI99WFMA3GmILqPU7BCOifIxmo6tN3T276DMSiYZ6eqKdUr1wjTnKrWzbo8_jg.webp",
+    "content": "## 난 듄은 재미없더라\n\n김수빈, 윤소예 왜 환장함?\n어이없다\n\n"
   }
 ]
