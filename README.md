@@ -1,20 +1,89 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# FilmFilmFilm
 
-# Run and deploy your AI Studio app
+**A cinematic archive interface for exploring films as a chronological and connected collection.**
 
-This contains everything you need to run your app locally.
+FilmFilmFilm is a personal archive system that treats movies not only as individual entries, but as pieces of a larger timeline of cinema.
 
-View your app in AI Studio: https://ai.studio/apps/81f5593a-6c18-4fc6-aa46-bc8afc8fab5e
+The project combines structured metadata, editorial notes, and an interactive library interface to create a browsable cinematic database.
 
-## Run Locally
+## Concept
 
-**Prerequisites:**  Node.js
+Film databases usually focus on search and filtering. This project explores a different question:
 
+> How can a film archive feel like a place for discovery rather than a list of records?
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+The interface experiments with multiple ways of navigating a collection:
+
+- bookshelf-style browsing
+- library index views
+- individual movie records
+- chronological metadata
+- personal annotations
+
+## Features
+
+- Curated movie archive with structured metadata
+- Bookshelf-style visual browsing
+- Grid/library index navigation
+- Individual movie detail pages
+- Search through the archive
+- Personal starred collections
+- Editable movie notes
+- Light/dark viewing modes
+- Notion database synchronization workflow
+
+## Data workflow
+
+```text
+Notion Database
+      ↓
+Sync Script
+      ↓
+src/data.json
+      ↓
+Archive Interface
+```
+
+The archive content can be managed externally through Notion and synchronized into the application data structure.
+
+## Tech
+
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- Motion
+- Notion API
+- Cloudflare Worker
+
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+To sync archive data from Notion:
+
+```bash
+npm run sync
+```
+
+## Structure
+
+```text
+src/
+├── components/
+│   ├── BookshelfView.tsx
+│   ├── LibraryIndex.tsx
+│   ├── MovieDetail.tsx
+│   └── SyncSettings.tsx
+├── data.json
+└── App.tsx
+
+sync_notion.py  # Notion → archive data pipeline
+```
+
+## Status
+
+Experimental archive interface exploring the relationship between **data, memory, and cinematic collections**.
